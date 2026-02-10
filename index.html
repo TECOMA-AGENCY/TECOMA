@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TECOMA – Ressources Humaines, Conformité & Sécurité</title>
+
+  <!-- SEO -->
+  <meta name="description" content="TECOMA accompagne les entreprises en ressources humaines, conformité sociale, sécurité au travail, audit WRAP, C-TPAT et formations professionnelles.">
+  <meta name="keywords" content="RH, conformité sociale, WRAP, C-TPAT, sécurité au travail, audit, formation, Haïti">
+  <meta name="author" content="TECOMA">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+    .hero {
+      background: linear-gradient(rgba(0,32,96,.8), rgba(178,34,34,.8)),
+      url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-card { transition: all .4s ease; }
+    .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,.15); }
+
+    header.shrink { padding-top: .5rem; padding-bottom: .5rem; }
+  </style>
+</head>
+
+<body class="font-sans bg-gray-50 pt-20" role="document">
+
+<!-- HEADER STICKY -->
+<header id="header" class="bg-blue-900 text-white fixed top-0 left-0 w-full z-50 transition-all duration-300" role="banner">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <i class="fas fa-building-shield text-red-500 text-2xl" aria-hidden="true"></i>
+      <h1 class="text-2xl font-bold">TECOMA</h1>
+    </div>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex space-x-8 font-medium" aria-label="Navigation principale">
+      <a href="#accueil" class="hover:text-red-400">Accueil</a>
+      <a href="#services" class="hover:text-red-400">Services</a>
+      <a href="#apropos" class="hover:text-red-400">À propos</a>
+      <a href="#contact" class="hover:text-red-400">Contact</a>
+    </nav>
+
+    <!-- Hamburger -->
+    <button id="menuBtn" class="md:hidden text-2xl" aria-label="Ouvrir le menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobileMenu" class="hidden bg-blue-900 md:hidden px-6 pb-4 space-y-3" aria-label="Navigation mobile">
+    <a href="#accueil" class="block hover:text-red-400">Accueil</a>
+    <a href="#services" class="block hover:text-red-400">Services</a>
+    <a href="#apropos" class="block hover:text-red-400">À propos</a>
+    <a href="#contact" class="block hover:text-red-400">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="accueil" class="hero text-white py-24 text-center" data-aos="fade-down">
+  <h2 class="text-4xl md:text-6xl font-bold mb-6">TECOMA</h2>
+  <p class="text-xl md:text-2xl mb-10" data-aos="fade-up">
+    Technical Education, Compliance & Management Agency
+</p>
+<div class="flex justify-center gap-6" data-aos="zoom-in">
+    <a href="#contact" class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-semibold">
+        Nous contacter
+    </a>
+    <a href="#services" class="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold">
+        Nos services
+    </a>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-16 bg-white" role="region" aria-labelledby="services-title">
+  <div class="container mx-auto px-4">
+    <h2 id="services-title" class="text-4xl font-bold text-blue-900 text-center mb-12">Nos Services</h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="service-card p-6 rounded-lg shadow border-t-4 border-red-600" data-aos="fade-up">
+        <h3 class="text-xl font-bold mb-3">Ressources Humaines</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li>Recrutement et sélection</li>
+          <li>Placement temporaire et permanent</li>
+          <li>Externalisation RH</li>
+          <li>Évaluation et développement des compétences</li>
+        </ul>
+      </div>
+
+      <div class="service-card p-6 rounded-lg shadow border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="text-xl font-bold mb-3">Audit & Conformité</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li>Audit WRAP</li>
+          <li>Support conformité C-TPAT</li>
+          <li>Assurance qualité export</li>
+          <li>Représentation locale</li>
+        </ul>
+      </div>
+
+      <div class="service-card p-6 rounded-lg shadow border-t-4 border-red-600" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="text-xl font-bold mb-3">Évaluation des Risques</h3>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li>Analyse des risques professionnels</li>
+          <li>Évaluation HSE</li>
+          <li>Plans de prévention</li>
+          <li>Amélioration continue</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="apropos" class="py-16 bg-gray-100" role="region">
+  <div class="container mx-auto px-4 max-w-4xl text-center">
+    <h2 class="text-4xl font-bold text-blue-900 mb-6">À propos de TECOMA</h2>
+    <p class="text-gray-700">TECOMA accompagne les entreprises locales et internationales dans la mise en œuvre et le maintien de systèmes performants de conformité sociale, de santé et sécurité au travail et de développement des ressources humaines.
+Nous intervenons selon les standards professionnels et réglementaires internationaux, en tenant compte des réalités opérationnelles de chaque organisation.
+Notre approche vise à renforcer la performance globale, la gestion des risques et la conformité aux exigences des clients et des autorités.
+TECOMA aide les entreprises à améliorer leurs pratiques internes, à sécuriser leurs opérations et à valoriser leur capital humain.
+Grâce à une expertise technique éprouvée, nous proposons des solutions adaptées, durables et orientées résultats.
+Notre objectif est de soutenir les organisations dans leur croissance responsable, leur compétitivité et leur image professionnelle sur les marchés nationaux et internationaux.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-16 bg-white text-center" role="region">
+  <h2 class="text-4xl font-bold text-blue-900 mb-6">Contact</h2>
+  <p>📧 info@tecoma.ht | 📞 +509 36 71 52 75</p>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 py-6 text-center" role="contentinfo">
+  © 2026 TECOMA – Tous droits réservés
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+  });
+
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('shrink', window.scrollY > 80);
+  });
+</script>
+
+</body>
+</html>
