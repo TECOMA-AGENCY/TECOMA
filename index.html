@@ -55,22 +55,59 @@
     border-bottom:1px solid rgba(255,255,255,.08);
     transition:padding .25s ease;
   }
-  header .bar{display:flex; align-items:center; justify-content:space-between; padding:1.1rem 0; transition:padding .25s ease;}
-  header.shrink .bar{padding:.6rem 0;}
-  .logo-mark{width:40px; height:40px; flex-shrink:0;}
-  .brand-name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.35rem; letter-spacing:.01em;}
-  .brand-tag{color:#9FB2C9; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;}
-  nav.desktop a{
-    color:#D8E1EC; font-weight:500; font-size:.93rem; margin-left:2.1rem; position:relative; padding-bottom:4px;
+  header .bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 0; transition:padding .25s ease;
   }
-  nav.desktop a::after{
+  header.shrink .bar{padding:.6rem 0;}
+  .brand-link{display:flex; align-items:center; gap:.75rem;}
+  .logo-mark{width:40px; height:40px; flex-shrink:0;}
+  .brand-name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.35rem; letter-spacing:.01em; line-height:1.1;}
+  .brand-tag{color:#9FB2C9; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;}
+
+  /* Desktop nav: hidden by default, shown from 860px up.
+     Written in plain CSS (no Tailwind dependency) so it can never
+     collapse or double up with the mobile menu if the CDN is slow/blocked. */
+  nav.nav-desktop{
+    display:none;
+    align-items:center;
+    gap:2.4rem;
+  }
+  nav.nav-desktop a{
+    color:#D8E1EC; font-weight:500; font-size:.93rem; position:relative; padding-bottom:4px; white-space:nowrap;
+  }
+  nav.nav-desktop a::after{
     content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--red); transition:width .25s ease;
   }
-  nav.desktop a:hover::after{width:100%;}
-  nav.desktop a:hover{color:#fff;}
-  #menuBtn{color:#fff; font-size:1.4rem; background:none; border:none; cursor:pointer;}
-  #mobileMenu{background:var(--steel); border-top:1px solid rgba(255,255,255,.1);}
-  #mobileMenu a{display:block; padding:.85rem 1.5rem; color:#E7ECF2; border-bottom:1px solid rgba(255,255,255,.06); font-weight:500;}
+  nav.nav-desktop a:hover::after{width:100%;}
+  nav.nav-desktop a:hover{color:#fff;}
+
+  .menu-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; color:#fff; font-size:1.25rem;
+    background:none; border:1px solid rgba(255,255,255,.18); border-radius:4px; cursor:pointer;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .menu-btn:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.3);}
+
+  /* Mobile menu: closed by default via max-height, no reliance on utility classes */
+  #mobileMenu{
+    background:var(--steel);
+    border-top:1px solid rgba(255,255,255,.1);
+    max-height:0; overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  #mobileMenu.open{max-height:320px;}
+  #mobileMenu a{
+    display:block; padding:.9rem 1.5rem; color:#E7ECF2;
+    border-bottom:1px solid rgba(255,255,255,.06); font-weight:500; font-size:.95rem;
+  }
+  #mobileMenu a:hover{background:rgba(255,255,255,.05); color:#fff;}
+
+  @media (min-width:860px){
+    nav.nav-desktop{display:flex;}
+    .menu-btn, #mobileMenu{display:none;}
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -196,7 +233,7 @@
 <!-- HEADER -->
 <header id="header" role="banner">
   <div class="container bar">
-    <a href="#accueil" class="flex items-center gap-3">
+    <a href="#accueil" class="brand-link">
       <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 C12 42 4 34 4 23 V10 Z" fill="#0B2545" stroke="#C1272D" stroke-width="1.5"/>
         <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 Z" fill="#132F52"/>
@@ -208,19 +245,19 @@
       </div>
     </a>
 
-    <nav class="desktop hidden md:flex" aria-label="Navigation principale">
+    <nav class="nav-desktop" aria-label="Navigation principale">
       <a href="#services">Services</a>
       <a href="#approche">Approche</a>
       <a href="#apropos">À propos</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <button id="menuBtn" class="md:hidden" aria-label="Ouvrir le menu" aria-expanded="false">
+    <button id="menuBtn" class="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 
-  <nav id="mobileMenu" class="hidden md:hidden" aria-label="Navigation mobile">
+  <nav id="mobileMenu" aria-label="Navigation mobile">
     <a href="#services">Services</a>
     <a href="#approche">Approche</a>
     <a href="#apropos">À propos</a>
@@ -461,9 +498,27 @@
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    menuBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    menuBtn.innerHTML = isOpen ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
   });
+
+  // Close the mobile menu automatically once the viewport reaches desktop size
+  const desktopQuery = window.matchMedia('(min-width:860px)');
+  desktopQuery.addEventListener('change', (e) => {
+    if (e.matches) {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+  });
+
+  // Close menu after tapping a link
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  }));
 
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
