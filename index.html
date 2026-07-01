@@ -1,158 +1,463 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TECOMA – Ressources Humaines, Conformité & Sécurité</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TECOMA — Ressources Humaines, Conformité & Sécurité au Travail</title>
 
-  <!-- SEO -->
-  <meta name="description" content="TECOMA accompagne les entreprises en ressources humaines, conformité sociale, sécurité au travail, audit WRAP, C-TPAT et formations professionnelles.">
-  <meta name="keywords" content="RH, conformité sociale, WRAP, C-TPAT, sécurité au travail, audit, formation, Haïti">
-  <meta name="author" content="TECOMA">
+<meta name="description" content="TECOMA accompagne les entreprises en ressources humaines, conformité sociale (WRAP, C-TPAT), sécurité au travail et formation professionnelle en Haïti.">
+<meta name="keywords" content="RH, conformité sociale, WRAP, C-TPAT, sécurité au travail, audit, formation, Haïti">
+<meta name="author" content="TECOMA">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0B2545;
+    --steel:#1D3A5F;
+    --red:#C1272D;
+    --paper:#F7F5F1;
+    --slate:#54606C;
+    --gold:#B08A4E;
+    --line:#DCD6C9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:5.5rem;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--slate);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.font-display{font-family:'Fraunces',serif;}
+  .font-mono{font-family:'IBM Plex Mono',monospace;}
+  a{text-decoration:none;color:inherit;}
+  .container{max-width:1180px;margin:0 auto;padding:0 1.5rem;}
 
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
 
-  <style>
-    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
 
-    .hero {
-      background: linear-gradient(rgba(0,32,96,.8), rgba(178,34,34,.8)),
-      url('https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc');
-      background-size: cover;
-      background-position: center;
-    }
+  /* ---------- header ---------- */
+  header{
+    position:fixed; top:0; left:0; width:100%; z-index:50;
+    background:rgba(11,37,69,.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:padding .25s ease;
+  }
+  header .bar{display:flex; align-items:center; justify-content:space-between; padding:1.1rem 0; transition:padding .25s ease;}
+  header.shrink .bar{padding:.6rem 0;}
+  .logo-mark{width:40px; height:40px; flex-shrink:0;}
+  .brand-name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.35rem; letter-spacing:.01em;}
+  .brand-tag{color:#9FB2C9; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;}
+  nav.desktop a{
+    color:#D8E1EC; font-weight:500; font-size:.93rem; margin-left:2.1rem; position:relative; padding-bottom:4px;
+  }
+  nav.desktop a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--red); transition:width .25s ease;
+  }
+  nav.desktop a:hover::after{width:100%;}
+  nav.desktop a:hover{color:#fff;}
+  #menuBtn{color:#fff; font-size:1.4rem; background:none; border:none; cursor:pointer;}
+  #mobileMenu{background:var(--steel); border-top:1px solid rgba(255,255,255,.1);}
+  #mobileMenu a{display:block; padding:.85rem 1.5rem; color:#E7ECF2; border-bottom:1px solid rgba(255,255,255,.06); font-weight:500;}
 
-    .service-card { transition: all .4s ease; }
-    .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px rgba(0,0,0,.15); }
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:var(--navy);
+    padding:9.5rem 0 6rem;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+  .hero::after{
+    content:""; position:absolute; right:-120px; top:-120px; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(193,39,45,.25), transparent 65%);
+  }
+  .hero-inner{position:relative; z-index:2;}
+  .ref-tag{
+    display:inline-flex; align-items:center; gap:.6rem;
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase;
+    color:#B9C7D8; border:1px solid rgba(255,255,255,.22); padding:.4rem .9rem; border-radius:999px;
+  }
+  .ref-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--red); box-shadow:0 0 0 3px rgba(193,39,45,.25);}
+  .hero h1{
+    color:#fff; font-size:clamp(2.3rem, 4.4vw, 3.55rem); line-height:1.12; font-weight:600; max-width:16ch;
+  }
+  .hero h1 em{color:#E7A5A8; font-style:normal;}
+  .hero p.lead{color:#C4D0DD; font-size:1.12rem; max-width:52ch; line-height:1.7;}
+  .btn{
+    display:inline-flex; align-items:center; gap:.55rem; font-weight:600; font-size:.95rem;
+    padding:.85rem 1.6rem; border-radius:2px; transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{background:var(--red); color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(193,39,45,.55);}
+  .btn-ghost{border:1px solid rgba(255,255,255,.35); color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,.08); transform:translateY(-2px);}
 
-    header.shrink { padding-top: .5rem; padding-bottom: .5rem; }
-  </style>
+  .hero-file{
+    background:var(--paper); border:1px solid var(--line);
+    padding:1.6rem; box-shadow:0 30px 60px -20px rgba(0,0,0,.45);
+    transform:rotate(1.2deg);
+  }
+  .hero-file .stamp{
+    font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.1em; color:var(--red);
+    border:1.5px solid var(--red); display:inline-block; padding:.25rem .6rem; transform:rotate(-4deg);
+  }
+
+  /* ---------- trust strip ---------- */
+  .trust{background:#fff; border-bottom:1px solid var(--line); border-top:1px solid var(--line);}
+  .trust-item{display:flex; align-items:center; gap:.7rem; font-size:.88rem; color:var(--navy); font-weight:500;}
+  .trust-item i{color:var(--red);}
+
+  /* ---------- section headers ---------- */
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:500;
+  }
+  .section-title{color:var(--navy); font-size:clamp(1.8rem,3vw,2.5rem); font-weight:600; margin-top:.5rem;}
+
+  /* ---------- services ---------- */
+  .svc-card{
+    background:#fff; border:1px solid var(--line); padding:2.1rem 1.9rem; position:relative;
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .svc-card:hover{transform:translateY(-6px); border-color:var(--navy); box-shadow:0 24px 40px -22px rgba(11,37,69,.35);}
+  .svc-code{
+    position:absolute; top:1.6rem; right:1.7rem; font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:#B7BFC8;
+  }
+  .svc-icon{
+    width:52px; height:52px; border-radius:2px; background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:1.3rem;
+  }
+  .svc-card:nth-child(2) .svc-icon{background:var(--red);}
+  .svc-card h3{color:var(--navy); font-size:1.25rem; font-weight:600; margin:0 0 .9rem;}
+  .svc-card ul{margin:0; padding:0; list-style:none;}
+  .svc-card li{
+    display:flex; gap:.6rem; font-size:.93rem; color:var(--slate); padding:.4rem 0; border-top:1px solid #EFECE4;
+  }
+  .svc-card li:first-child{border-top:none;}
+  .svc-card li i{color:var(--red); font-size:.7rem; margin-top:.35rem;}
+
+  /* ---------- approach ---------- */
+  .approach-step{position:relative; padding-left:3.6rem;}
+  .approach-step .num{
+    position:absolute; left:0; top:0; font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; color:var(--red);
+    width:2.6rem; height:2.6rem; border:1.5px solid var(--red); border-radius:50%; display:flex; align-items:center; justify-content:center;
+  }
+  .approach-step h4{color:var(--navy); font-weight:600; font-size:1.05rem; margin:0 0 .4rem;}
+  .approach-line{position:absolute; left:1.3rem; top:2.6rem; bottom:-2.4rem; width:1px; background:var(--line);}
+
+  /* ---------- about / seal ---------- */
+  .about-wrap{background:var(--navy); color:#DDE4EC; position:relative; overflow:hidden;}
+  .about-wrap::before{
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:60px 60px;
+  }
+  .about-text p{line-height:1.85; font-size:1.02rem; color:#C4D0DD;}
+  .seal{
+    width:190px; height:190px; margin:0 auto; position:relative;
+  }
+  .seal svg{width:100%; height:100%;}
+  .seal-wrap{transform:rotate(-8deg); transition:transform .8s ease;}
+  .seal-wrap.in{transform:rotate(-8deg);}
+
+  /* ---------- contact ---------- */
+  .contact-card{
+    background:#fff; border:1px solid var(--line); padding:2.6rem;
+  }
+  .contact-row{display:flex; align-items:flex-start; gap:1rem; padding:1.1rem 0; border-top:1px solid #EFECE4;}
+  .contact-row:first-child{border-top:none;}
+  .contact-row i{color:var(--red); width:20px; margin-top:.2rem;}
+  .contact-row a:hover{color:var(--red);}
+
+  footer{background:var(--navy); color:#8FA0B5;}
+</style>
 </head>
 
-<body class="font-sans bg-gray-50 pt-20" role="document">
+<body>
 
-<!-- HEADER STICKY -->
-<header id="header" class="bg-blue-900 text-white fixed top-0 left-0 w-full z-50 transition-all duration-300" role="banner">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-3">
-      <i class="fas fa-building-shield text-red-500 text-2xl" aria-hidden="true"></i>
-      <h1 class="text-2xl font-bold">TECOMA</h1>
-    </div>
+<!-- HEADER -->
+<header id="header" role="banner">
+  <div class="container bar">
+    <a href="#accueil" class="flex items-center gap-3">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 C12 42 4 34 4 23 V10 Z" fill="#0B2545" stroke="#C1272D" stroke-width="1.5"/>
+        <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 Z" fill="#132F52"/>
+        <text x="24" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#F7F5F1" font-weight="600">TC</text>
+      </svg>
+      <div>
+        <div class="brand-name">TECOMA</div>
+        <div class="brand-tag">HR · Compliance · Safety</div>
+      </div>
+    </a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex space-x-8 font-medium" aria-label="Navigation principale">
-      <a href="#accueil" class="hover:text-red-400">Accueil</a>
-      <a href="#services" class="hover:text-red-400">Services</a>
-      <a href="#apropos" class="hover:text-red-400">À propos</a>
-      <a href="#contact" class="hover:text-red-400">Contact</a>
+    <nav class="desktop hidden md:flex" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#approche">Approche</a>
+      <a href="#apropos">À propos</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <!-- Hamburger -->
-    <button id="menuBtn" class="md:hidden text-2xl" aria-label="Ouvrir le menu" aria-expanded="false">
+    <button id="menuBtn" class="md:hidden" aria-label="Ouvrir le menu" aria-expanded="false">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 
-  <!-- Mobile menu -->
-  <nav id="mobileMenu" class="hidden bg-blue-900 md:hidden px-6 pb-4 space-y-3" aria-label="Navigation mobile">
-    <a href="#accueil" class="block hover:text-red-400">Accueil</a>
-    <a href="#services" class="block hover:text-red-400">Services</a>
-    <a href="#apropos" class="block hover:text-red-400">À propos</a>
-    <a href="#contact" class="block hover:text-red-400">Contact</a>
+  <nav id="mobileMenu" class="hidden md:hidden" aria-label="Navigation mobile">
+    <a href="#services">Services</a>
+    <a href="#approche">Approche</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <!-- HERO -->
-<section id="accueil" class="hero text-white py-24 text-center" data-aos="fade-down">
-  <h2 class="text-4xl md:text-6xl font-bold mb-6">TECOMA</h2>
-  <p class="text-xl md:text-2xl mb-10" data-aos="fade-up">
-    Technical Education, Compliance & Management Agency
-</p>
-<div class="flex justify-center gap-6" data-aos="zoom-in">
-    <a href="#contact" class="bg-red-600 hover:bg-red-700 px-8 py-3 rounded-lg font-semibold">
-        Nous contacter
-    </a>
-    <a href="#services" class="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold">
-        Nos services
-    </a>
+<section id="accueil" class="hero">
+  <div class="container hero-inner">
+    <div class="grid lg:grid-cols-5 gap-14 items-center">
+
+      <div class="lg:col-span-3">
+        <span class="ref-tag"><span class="dot"></span>Technical Education, Compliance &amp; Management Agency</span>
+        <h1 class="mt-6">La conformité sociale et la sécurité au travail, pilotées avec <em>rigueur</em>.</h1>
+        <p class="lead mt-6">
+          TECOMA accompagne les entreprises haïtiennes exportatrices dans leur mise en conformité WRAP et C-TPAT,
+          la gestion de leurs ressources humaines et la maîtrise de leurs risques professionnels — avec une expertise
+          locale ancrée dans les standards internationaux.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-9">
+          <a href="#contact" class="btn btn-primary">Planifier un échange <i class="fas fa-arrow-right"></i></a>
+          <a href="#services" class="btn btn-ghost">Nos services</a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 hidden lg:block">
+        <div class="hero-file">
+          <div class="flex justify-between items-start mb-6">
+            <span class="font-mono text-xs" style="color:var(--slate)">DOSSIER&nbsp;·&nbsp;CONFORMITÉ SOCIALE</span>
+            <span class="stamp">RÉF. TC-2026</span>
+          </div>
+          <ul class="space-y-3 text-sm" style="color:var(--navy)">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Audit WRAP planifié</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Support C-TPAT en cours</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Évaluation HSE terrain</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Plan de prévention validé</li>
+          </ul>
+          <div class="mt-6 pt-4" style="border-top:1px solid var(--line)">
+            <span class="font-mono text-xs" style="color:var(--slate)">Statut : conforme aux exigences client</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="container py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="trust-item"><i class="fas fa-stamp"></i> Normes WRAP &amp; C-TPAT</div>
+    <div class="trust-item"><i class="fas fa-map-location-dot"></i> Expertise locale, Haïti</div>
+    <div class="trust-item"><i class="fas fa-user-shield"></i> Confidentialité garantie</div>
+    <div class="trust-item"><i class="fas fa-sliders"></i> Accompagnement sur mesure</div>
+  </div>
+</div>
+
 <!-- SERVICES -->
-<section id="services" class="py-16 bg-white" role="region" aria-labelledby="services-title">
-  <div class="container mx-auto px-4">
-    <h2 id="services-title" class="text-4xl font-bold text-blue-900 text-center mb-12">Nos Services</h2>
+<section id="services" class="py-24 bg-white" aria-labelledby="services-title">
+  <div class="container">
+    <div class="max-w-xl reveal">
+      <span class="eyebrow">Nos domaines d'intervention</span>
+      <h2 id="services-title" class="section-title">Trois expertises, une même exigence de conformité.</h2>
+    </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-6 mt-14">
 
-      <div class="service-card p-6 rounded-lg shadow border-t-4 border-red-600" data-aos="fade-up">
-        <h3 class="text-xl font-bold mb-3">Ressources Humaines</h3>
-        <ul class="list-disc list-inside text-gray-700 space-y-1">
-          <li>Recrutement et sélection</li>
-          <li>Placement temporaire et permanent</li>
-          <li>Externalisation RH</li>
-          <li>Évaluation et développement des compétences</li>
+      <div class="svc-card reveal">
+        <span class="svc-code">RH·01</span>
+        <div class="svc-icon"><i class="fas fa-people-group"></i></div>
+        <h3>Ressources Humaines</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Recrutement et sélection</li>
+          <li><i class="fas fa-circle"></i> Placement temporaire et permanent</li>
+          <li><i class="fas fa-circle"></i> Externalisation RH</li>
+          <li><i class="fas fa-circle"></i> Évaluation et développement des compétences</li>
         </ul>
       </div>
 
-      <div class="service-card p-6 rounded-lg shadow border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
-        <h3 class="text-xl font-bold mb-3">Audit & Conformité</h3>
-        <ul class="list-disc list-inside text-gray-700 space-y-1">
-          <li>Audit WRAP</li>
-          <li>Support conformité C-TPAT</li>
-          <li>Assurance qualité export</li>
-          <li>Représentation locale</li>
+      <div class="svc-card reveal" style="transition-delay:.08s">
+        <span class="svc-code">AC·02</span>
+        <div class="svc-icon"><i class="fas fa-clipboard-check"></i></div>
+        <h3>Audit &amp; Conformité</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Audit WRAP</li>
+          <li><i class="fas fa-circle"></i> Support conformité C-TPAT</li>
+          <li><i class="fas fa-circle"></i> Assurance qualité export</li>
+          <li><i class="fas fa-circle"></i> Représentation locale</li>
         </ul>
       </div>
 
-      <div class="service-card p-6 rounded-lg shadow border-t-4 border-red-600" data-aos="fade-up" data-aos-delay="200">
-        <h3 class="text-xl font-bold mb-3">Évaluation des Risques</h3>
-        <ul class="list-disc list-inside text-gray-700 space-y-1">
-          <li>Analyse des risques professionnels</li>
-          <li>Évaluation HSE</li>
-          <li>Plans de prévention</li>
-          <li>Amélioration continue</li>
+      <div class="svc-card reveal" style="transition-delay:.16s">
+        <span class="svc-code">ER·03</span>
+        <div class="svc-icon"><i class="fas fa-hard-hat"></i></div>
+        <h3>Évaluation des Risques</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Analyse des risques professionnels</li>
+          <li><i class="fas fa-circle"></i> Évaluation HSE</li>
+          <li><i class="fas fa-circle"></i> Plans de prévention</li>
+          <li><i class="fas fa-circle"></i> Amélioration continue</li>
         </ul>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- APPROCHE -->
+<section id="approche" class="py-24" style="background:var(--paper); border-top:1px solid var(--line);">
+  <div class="container grid lg:grid-cols-2 gap-16">
+    <div class="reveal">
+      <span class="eyebrow">Notre méthode</span>
+      <h2 class="section-title">Une démarche en trois temps, du diagnostic au suivi.</h2>
+      <p class="mt-5 text-base leading-relaxed" style="max-width:44ch">
+        Chaque mission s'appuie sur une méthodologie structurée, adaptée aux réalités opérationnelles
+        de votre organisation et aux exigences de vos donneurs d'ordre.
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      <div class="approach-step reveal">
+        <span class="num">1</span>
+        <div class="approach-line"></div>
+        <h4>Diagnostic</h4>
+        <p class="text-sm">Évaluation initiale des pratiques RH, des risques professionnels et du niveau de conformité actuel.</p>
+      </div>
+      <div class="approach-step reveal" style="transition-delay:.08s">
+        <span class="num">2</span>
+        <div class="approach-line"></div>
+        <h4>Mise en œuvre</h4>
+        <p class="text-sm">Plans d'action, formations et accompagnement terrain pour corriger les écarts identifiés.</p>
+      </div>
+      <div class="approach-step reveal" style="transition-delay:.16s">
+        <span class="num">3</span>
+        <h4>Suivi &amp; amélioration continue</h4>
+        <p class="text-sm">Contrôles périodiques, reporting et ajustement des pratiques pour maintenir la conformité dans le temps.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- À PROPOS -->
-<section id="apropos" class="py-16 bg-gray-100" role="region">
-  <div class="container mx-auto px-4 max-w-4xl text-center">
-    <h2 class="text-4xl font-bold text-blue-900 mb-6">À propos de TECOMA</h2>
-    <p class="text-gray-700">TECOMA accompagne les entreprises locales et internationales dans la mise en œuvre et le maintien de systèmes performants de conformité sociale, de santé et sécurité au travail et de développement des ressources humaines.
-Nous intervenons selon les standards professionnels et réglementaires internationaux, en tenant compte des réalités opérationnelles de chaque organisation.
-Notre approche vise à renforcer la performance globale, la gestion des risques et la conformité aux exigences des clients et des autorités.
-TECOMA aide les entreprises à améliorer leurs pratiques internes, à sécuriser leurs opérations et à valoriser leur capital humain.
-Grâce à une expertise technique éprouvée, nous proposons des solutions adaptées, durables et orientées résultats.
-Notre objectif est de soutenir les organisations dans leur croissance responsable, leur compétitivité et leur image professionnelle sur les marchés nationaux et internationaux.</p>
+<section id="apropos" class="about-wrap py-24">
+  <div class="container relative grid lg:grid-cols-3 gap-14 items-center">
+    <div class="lg:col-span-2 about-text reveal">
+      <span class="eyebrow" style="color:#E7A5A8">À propos de TECOMA</span>
+      <h2 class="section-title" style="color:#fff">Un partenaire technique pour une croissance responsable.</h2>
+      <p class="mt-6">
+        TECOMA accompagne les entreprises locales et internationales dans la mise en œuvre et le maintien de
+        systèmes performants de conformité sociale, de santé et sécurité au travail, et de développement des
+        ressources humaines.
+      </p>
+      <p>
+        Nous intervenons selon les standards professionnels et réglementaires internationaux, en tenant compte
+        des réalités opérationnelles de chaque organisation, pour renforcer la performance globale, la gestion
+        des risques et la conformité aux exigences des clients et des autorités.
+      </p>
+      <p>
+        Grâce à une expertise technique éprouvée, nous proposons des solutions adaptées, durables et orientées
+        résultats — au service de la compétitivité et de l'image professionnelle de nos clients sur les marchés
+        nationaux et internationaux.
+      </p>
+    </div>
+
+    <div class="reveal seal-wrap">
+      <div class="seal">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="100" cy="100" r="94" fill="none" stroke="#C1272D" stroke-width="2"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#C1272D" stroke-width="1"/>
+          <path id="circlePath" fill="none" d="M 100,100 m -66,0 a 66,66 0 1,1 132,0 a 66,66 0 1,1 -132,0"/>
+          <text font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#E7A5A8" letter-spacing="2">
+            <textPath href="#circlePath" startOffset="0%">TECOMA · CONFORMITÉ SOCIALE · SÉCURITÉ AU TRAVAIL ·</textPath>
+          </text>
+          <text x="100" y="94" text-anchor="middle" font-family="Fraunces, serif" font-size="17" fill="#fff" font-weight="600">CONFORME</text>
+          <text x="100" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#C4D0DD">WRAP · C-TPAT</text>
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="py-16 bg-white text-center" role="region">
-  <h2 class="text-4xl font-bold text-blue-900 mb-6">Contact</h2>
-  <p>📧 contact.tecoma@gmail.com | 📞 +509 48 97 36 45 / 36 71 52 75 / 36 02 91 57 </p>
+<section id="contact" class="py-24 bg-white">
+  <div class="container grid lg:grid-cols-5 gap-12">
+    <div class="lg:col-span-2 reveal">
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Discutons de vos enjeux de conformité.</h2>
+      <p class="mt-5 text-base leading-relaxed">
+        Notre équipe répond sous 24 à 48 heures ouvrées pour planifier un premier échange sur vos besoins RH,
+        conformité ou sécurité au travail.
+      </p>
+    </div>
+
+    <div class="lg:col-span-3 reveal">
+      <div class="contact-card">
+        <div class="contact-row">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <div class="font-mono text-xs uppercase" style="color:#98A2AC">Email</div>
+            <a href="mailto:contact.tecoma@gmail.com" class="font-medium" style="color:var(--navy)">contact.tecoma@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fas fa-phone"></i>
+          <div>
+            <div class="font-mono text-xs uppercase" style="color:#98A2AC">Téléphone</div>
+            <div style="color:var(--navy)">
+              <a href="tel:+50948973645" class="font-medium">+509 48 97 36 45</a> ·
+              <a href="tel:+50936715275" class="font-medium">36 71 52 75</a> ·
+              <a href="tel:+50936029157" class="font-medium">36 02 91 57</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fas fa-location-dot"></i>
+          <div>
+            <div class="font-mono text-xs uppercase" style="color:#98A2AC">Zone d'intervention</div>
+            <div style="color:var(--navy)" class="font-medium">Haïti — interventions sur site sur demande</div>
+          </div>
+        </div>
+        <a href="mailto:contact.tecoma@gmail.com" class="btn btn-primary mt-7">
+          Écrire à TECOMA <i class="fas fa-paper-plane"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="bg-gray-900 text-gray-400 py-6 text-center" role="contentinfo">
-  © 2026 TECOMA – Tous droits réservés
+<footer class="py-8">
+  <div class="container flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
+    <span>© 2026 TECOMA — Technical Education, Compliance &amp; Management Agency</span>
+    <span class="font-mono text-xs">Tous droits réservés</span>
+  </div>
 </footer>
 
-<!-- SCRIPTS -->
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 1000, once: true });
-
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn.addEventListener('click', () => {
@@ -162,11 +467,14 @@ Notre objectif est de soutenir les organisations dans leur croissance responsabl
 
   const header = document.getElementById('header');
   window.addEventListener('scroll', () => {
-    header.classList.toggle('shrink', window.scrollY > 80);
+    header.classList.toggle('shrink', window.scrollY > 60);
   });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
 </body>
 </html>
-
-
