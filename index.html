@@ -71,16 +71,22 @@
   nav.nav-desktop{
     display:none;
     align-items:center;
-    gap:2.4rem;
+    gap:.5rem;
   }
   nav.nav-desktop a{
-    color:#D8E1EC; font-weight:500; font-size:.93rem; position:relative; padding-bottom:4px; white-space:nowrap;
+    color:#D8E1EC; font-weight:500; font-size:.9rem; white-space:nowrap;
+    padding:.6rem 1.1rem; border-radius:4px; border:1px solid transparent;
+    transition:background .2s ease, border-color .2s ease, color .2s ease;
   }
-  nav.nav-desktop a::after{
-    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--red); transition:width .25s ease;
+  nav.nav-desktop a:hover{
+    color:#fff; background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.16);
   }
-  nav.nav-desktop a:hover::after{width:100%;}
-  nav.nav-desktop a:hover{color:#fff;}
+  nav.nav-desktop a.nav-cta{
+    color:#fff; background:var(--red); margin-left:.6rem;
+  }
+  nav.nav-desktop a.nav-cta:hover{
+    background:#a91f24; border-color:transparent;
+  }
 
   .menu-btn{
     display:inline-flex; align-items:center; justify-content:center;
@@ -182,7 +188,7 @@
     width:52px; height:52px; border-radius:2px; background:var(--navy); color:#fff;
     display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:1.3rem;
   }
-  .svc-card:nth-child(2) .svc-icon{background:var(--red);}
+  .svc-card:nth-child(2) .svc-icon, .svc-card:nth-child(4) .svc-icon{background:var(--red);}
   .svc-card h3{color:var(--navy); font-size:1.25rem; font-weight:600; margin:0 0 .9rem;}
   .svc-card ul{margin:0; padding:0; list-style:none;}
   .svc-card li{
@@ -250,6 +256,7 @@
       <a href="#approche">Approche</a>
       <a href="#apropos">À propos</a>
       <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Nous contacter</a>
     </nav>
 
     <button id="menuBtn" class="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -321,42 +328,61 @@
   <div class="container">
     <div class="max-w-xl reveal">
       <span class="eyebrow">Nos domaines d'intervention</span>
-      <h2 id="services-title" class="section-title">Trois expertises, une même exigence de conformité.</h2>
+      <h2 id="services-title" class="section-title">Quatre expertises, une même exigence de conformité.</h2>
+      <p class="mt-4 text-base leading-relaxed">
+        De la formation terrain à l'audit certifié, TECOMA couvre l'ensemble des exigences sociales, sécuritaires
+        et réglementaires imposées par vos donneurs d'ordre internationaux.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 mt-14">
+    <div class="grid md:grid-cols-2 gap-6 mt-14">
 
       <div class="svc-card reveal">
         <span class="svc-code">RH·01</span>
         <div class="svc-icon"><i class="fas fa-people-group"></i></div>
         <h3>Ressources Humaines</h3>
         <ul>
-          <li><i class="fas fa-circle"></i> Recrutement et sélection</li>
+          <li><i class="fas fa-circle"></i> Recrutement et sélection du personnel</li>
           <li><i class="fas fa-circle"></i> Placement temporaire et permanent</li>
-          <li><i class="fas fa-circle"></i> Externalisation RH</li>
+          <li><i class="fas fa-circle"></i> Externalisation de la fonction RH</li>
           <li><i class="fas fa-circle"></i> Évaluation et développement des compétences</li>
         </ul>
       </div>
 
-      <div class="svc-card reveal" style="transition-delay:.08s">
+      <div class="svc-card reveal" style="transition-delay:.06s">
         <span class="svc-code">AC·02</span>
         <div class="svc-icon"><i class="fas fa-clipboard-check"></i></div>
         <h3>Audit &amp; Conformité</h3>
         <ul>
           <li><i class="fas fa-circle"></i> Audit WRAP</li>
-          <li><i class="fas fa-circle"></i> Support conformité C-TPAT</li>
+          <li><i class="fas fa-circle"></i> Formation et support à la conformité C-TPAT (Customs-Trade Partnership Against Terrorism)</li>
+          <li><i class="fas fa-circle"></i> Audits de contrôle qualité, de conformité sociale et environnementale selon les normes ISO 9001, ISO 45001 et ISO 14001</li>
           <li><i class="fas fa-circle"></i> Assurance qualité export</li>
-          <li><i class="fas fa-circle"></i> Représentation locale</li>
+          <li><i class="fas fa-circle"></i> Représentation locale auprès des auditeurs et donneurs d'ordre</li>
         </ul>
       </div>
 
-      <div class="svc-card reveal" style="transition-delay:.16s">
-        <span class="svc-code">ER·03</span>
+      <div class="svc-card reveal" style="transition-delay:.12s">
+        <span class="svc-code">ST·03</span>
+        <div class="svc-icon"><i class="fas fa-fire-extinguisher"></i></div>
+        <h3>Sécurité au Travail &amp; Formations</h3>
+        <ul>
+          <li><i class="fas fa-circle"></i> Formation aux premiers secours</li>
+          <li><i class="fas fa-circle"></i> Formation à l'utilisation des extincteurs, conforme à la norme NFPA 10</li>
+          <li><i class="fas fa-circle"></i> Formation à la manipulation des produits chimiques, incluant la gestion des déversements et les procédures FDS/MSDS</li>
+          <li><i class="fas fa-circle"></i> Exercices d'évacuation d'urgence</li>
+          <li><i class="fas fa-circle"></i> Fourniture d'équipements de sécurité industrielle</li>
+          <li><i class="fas fa-circle"></i> Inspection et recharge d'extincteurs, conformes à la norme NFPA 10</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal" style="transition-delay:.18s">
+        <span class="svc-code">ER·04</span>
         <div class="svc-icon"><i class="fas fa-hard-hat"></i></div>
         <h3>Évaluation des Risques</h3>
         <ul>
           <li><i class="fas fa-circle"></i> Analyse des risques professionnels</li>
-          <li><i class="fas fa-circle"></i> Évaluation HSE</li>
+          <li><i class="fas fa-circle"></i> Évaluation HSE (Hygiène, Sécurité, Environnement)</li>
           <li><i class="fas fa-circle"></i> Plans de prévention</li>
           <li><i class="fas fa-circle"></i> Amélioration continue</li>
         </ul>
