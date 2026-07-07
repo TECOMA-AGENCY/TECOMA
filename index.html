@@ -110,7 +110,7 @@
   }
   #mobileMenu a:hover{background:rgba(255,255,255,.05); color:#fff;}
 
-  @media (min-width:860px){
+  @media (min-width:1010px){
     nav.nav-desktop{display:flex;}
     .menu-btn, #mobileMenu{display:none;}
   }
@@ -231,6 +231,90 @@
   .contact-row a:hover{color:var(--red);}
 
   footer{background:var(--navy); color:#8FA0B5;}
+
+  /* ---------- portfolio ---------- */
+  .pf-filters{display:flex; flex-wrap:wrap; gap:.6rem;}
+  .pf-filter{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+    padding:.55rem 1.1rem; border:1px solid var(--line); border-radius:999px; color:var(--navy);
+    background:#fff; cursor:pointer; transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .pf-filter:hover{border-color:var(--navy);}
+  .pf-filter.active{background:var(--navy); border-color:var(--navy); color:#fff;}
+
+  .pf-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem;
+  }
+  .pf-item{
+    position:relative; border-radius:2px; overflow:hidden; cursor:pointer;
+    aspect-ratio:4/3;
+  }
+  .pf-thumb{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:rgba(255,255,255,.92); transition:transform .5s ease;
+  }
+  .pf-item:hover .pf-thumb{transform:scale(1.05);}
+  .pf-thumb i{font-size:1.6rem; opacity:.85; margin-bottom:.5rem;}
+  .ph-1{background:linear-gradient(135deg,#0B2545,#1D3A5F);}
+  .ph-2{background:linear-gradient(135deg,#1D3A5F,#0B2545 80%);}
+  .ph-3{background:linear-gradient(135deg,#8C1418,#C1272D);}
+  .ph-4{background:linear-gradient(135deg,#2A4A73,#0B2545);}
+  .ph-5{background:linear-gradient(135deg,#0B2545,#3A5578);}
+  .ph-6{background:linear-gradient(135deg,#C1272D,#7C1519);}
+  .ph-7{background:linear-gradient(135deg,#16355C,#0B2545 70%);}
+  .ph-8{background:linear-gradient(135deg,#1D3A5F,#3A5578);}
+  .ph-9{background:linear-gradient(135deg,#7C1519,#C1272D);}
+  .ph-10{background:linear-gradient(135deg,#0B2545,#16355C);}
+
+  .pf-badge{
+    position:absolute; top:.8rem; left:.8rem; font-family:'IBM Plex Mono',monospace; font-size:.62rem;
+    letter-spacing:.1em; padding:.28rem .55rem; border-radius:999px; background:rgba(0,0,0,.35);
+    border:1px solid rgba(255,255,255,.3);
+  }
+  .pf-play{
+    position:absolute; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,.16);
+    border:1.5px solid rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center;
+    top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem;
+  }
+  .pf-cap{
+    position:absolute; left:0; right:0; bottom:0; padding:1rem 1.1rem;
+    background:linear-gradient(to top, rgba(0,0,0,.65), transparent);
+  }
+  .pf-code{font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.1em; color:#E7A5A8;}
+  .pf-cap h4{margin:.2rem 0 0; font-size:.95rem; font-weight:600; color:#fff;}
+  .pf-item.pf-hide{display:none;}
+
+  .pf-note{
+    font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:#8B95A0; text-align:center;
+  }
+
+  /* lightbox */
+  .pf-lightbox{
+    position:fixed; inset:0; z-index:100; background:rgba(6,16,32,.94);
+    display:none; align-items:center; justify-content:center; padding:2rem;
+  }
+  .pf-lightbox.open{display:flex;}
+  .pf-lightbox-inner{
+    max-width:760px; width:100%; background:var(--paper); border-radius:2px; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .pf-lightbox-media{height:min(60vh,420px); display:flex; align-items:center; justify-content:center; color:#fff;}
+  .pf-lightbox-body{padding:1.5rem 1.7rem;}
+  .pf-lightbox-body h4{color:var(--navy); margin:.3rem 0 .4rem; font-size:1.15rem;}
+  .pf-lightbox-body p{margin:0; font-size:.9rem; color:var(--slate);}
+  .pf-close{
+    position:absolute; top:1.4rem; right:1.6rem; width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.3); color:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem;
+  }
+  .pf-close:hover{background:rgba(255,255,255,.2);}
+
+  @media (max-width:900px){
+    .pf-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    .pf-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 
@@ -253,6 +337,7 @@
 
     <nav class="nav-desktop" aria-label="Navigation principale">
       <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
       <a href="#approche">Approche</a>
       <a href="#apropos">À propos</a>
       <a href="#contact">Contact</a>
@@ -266,6 +351,7 @@
 
   <nav id="mobileMenu" aria-label="Navigation mobile">
     <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#approche">Approche</a>
     <a href="#apropos">À propos</a>
     <a href="#contact">Contact</a>
@@ -392,6 +478,106 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-24" style="background:var(--paper); border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="flex flex-wrap items-end justify-between gap-6 reveal">
+      <div class="max-w-xl">
+        <span class="eyebrow">Portfolio</span>
+        <h2 class="section-title">Nos interventions, en images.</h2>
+        <p class="mt-4 text-base leading-relaxed">
+          Formations, audits et interventions terrain réalisés par nos équipes. Cette galerie sera mise à jour
+          au fil de nos missions avec vos clients.
+        </p>
+      </div>
+      <div class="pf-filters">
+        <button class="pf-filter active" data-filter="all">Tout</button>
+        <button class="pf-filter" data-filter="photo">Photos</button>
+        <button class="pf-filter" data-filter="video">Vidéos</button>
+      </div>
+    </div>
+
+    <div class="pf-grid mt-12 reveal">
+
+      <div class="pf-item" data-type="photo" data-title="Formation aux premiers secours" data-desc="Session pratique animée par nos formateurs certifiés, en atelier.">
+        <div class="pf-thumb ph-1"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·01 · SÉCURITÉ</span><h4>Formation premiers secours</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Formation extincteurs — Norme NFPA 10" data-desc="Exercice de manipulation d'extincteurs conforme aux exigences NFPA 10.">
+        <div class="pf-thumb ph-2"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·02 · SÉCURITÉ</span><h4>Formation extincteurs</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="video" data-title="Exercice d'évacuation d'urgence" data-desc="Simulation d'évacuation encadrée par nos équipes, avec débriefing.">
+        <div class="pf-thumb ph-3"><div class="pf-play"><i class="fas fa-play"></i></div></div>
+        <span class="pf-badge">VIDÉO</span>
+        <div class="pf-cap"><span class="pf-code">PF·03 · SÉCURITÉ</span><h4>Évacuation d'urgence</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Formation manipulation de produits chimiques" data-desc="Procédures de gestion des déversements et fiches FDS/MSDS.">
+        <div class="pf-thumb ph-5"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·04 · SÉCURITÉ</span><h4>Manipulation de produits chimiques</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Inspection et recharge d'extincteurs" data-desc="Contrôle périodique du parc d'extincteurs, conforme NFPA 10.">
+        <div class="pf-thumb ph-8"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·05 · SÉCURITÉ</span><h4>Inspection d'extincteurs</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Audit WRAP en atelier de production" data-desc="Vérification des postes de travail et des conditions sociales sur site.">
+        <div class="pf-thumb ph-4"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·06 · AUDIT</span><h4>Audit WRAP en atelier</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="video" data-title="Audit qualité ISO 9001" data-desc="Revue des processus de production selon les exigences ISO 9001.">
+        <div class="pf-thumb ph-6"><div class="pf-play"><i class="fas fa-play"></i></div></div>
+        <span class="pf-badge">VIDÉO</span>
+        <div class="pf-cap"><span class="pf-code">PF·07 · AUDIT</span><h4>Audit ISO 9001</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="video" data-title="Formation C-TPAT" data-desc="Sensibilisation du personnel aux exigences de sûreté C-TPAT.">
+        <div class="pf-thumb ph-9"><div class="pf-play"><i class="fas fa-play"></i></div></div>
+        <span class="pf-badge">VIDÉO</span>
+        <div class="pf-cap"><span class="pf-code">PF·08 · AUDIT</span><h4>Formation C-TPAT</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Entretiens de recrutement" data-desc="Séance d'entretiens et d'évaluation de candidats pour nos clients.">
+        <div class="pf-thumb ph-7"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·09 · RH</span><h4>Recrutement &amp; entretiens</h4></div>
+      </div>
+
+      <div class="pf-item" data-type="photo" data-title="Évaluation des risques sur site" data-desc="Visite terrain et analyse des risques professionnels en production.">
+        <div class="pf-thumb ph-10"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap"><span class="pf-code">PF·10 · RISQUES</span><h4>Évaluation des risques</h4></div>
+      </div>
+
+    </div>
+
+    <p class="pf-note mt-8">Vignettes de démonstration — à remplacer par vos photos et vidéos officielles.</p>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="pf-lightbox" id="pfLightbox">
+  <button class="pf-close" id="pfClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+  <div class="pf-lightbox-inner">
+    <div class="pf-lightbox-media" id="pfLightboxMedia"></div>
+    <div class="pf-lightbox-body">
+      <span class="pf-code" id="pfLightboxCode"></span>
+      <h4 id="pfLightboxTitle"></h4>
+      <p id="pfLightboxDesc"></p>
+    </div>
+  </div>
+</div>
+
 <!-- APPROCHE -->
 <section id="approche" class="py-24" style="background:var(--paper); border-top:1px solid var(--line);">
   <div class="container grid lg:grid-cols-2 gap-16">
@@ -492,7 +678,8 @@
           <div>
             <div class="font-mono text-xs uppercase" style="color:#98A2AC">Téléphone</div>
             <div style="color:var(--navy)">
-              <a href="tel:+50936715275" class="font-medium">+509 36 71 52 75</a> ·
+              <a href="tel:+50948973645" class="font-medium">+509 48 97 36 45</a> ·
+              <a href="tel:+50936715275" class="font-medium">36 71 52 75</a> ·
               <a href="tel:+50936029157" class="font-medium">36 02 91 57</a>
             </div>
           </div>
@@ -529,7 +716,7 @@
   });
 
   // Close the mobile menu automatically once the viewport reaches desktop size
-  const desktopQuery = window.matchMedia('(min-width:860px)');
+  const desktopQuery = window.matchMedia('(min-width:1010px)');
   desktopQuery.addEventListener('change', (e) => {
     if (e.matches) {
       mobileMenu.classList.remove('open');
@@ -554,6 +741,49 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Portfolio: filters ----------
+  const pfFilters = document.querySelectorAll('.pf-filter');
+  const pfItems = document.querySelectorAll('.pf-item');
+  pfFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      pfFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      pfItems.forEach(item => {
+        const match = f === 'all' || item.dataset.type === f;
+        item.classList.toggle('pf-hide', !match);
+      });
+    });
+  });
+
+  // ---------- Portfolio: lightbox ----------
+  const pfLightbox = document.getElementById('pfLightbox');
+  const pfMedia = document.getElementById('pfLightboxMedia');
+  const pfTitle = document.getElementById('pfLightboxTitle');
+  const pfDesc = document.getElementById('pfLightboxDesc');
+  const pfCode = document.getElementById('pfLightboxCode');
+  const pfClose = document.getElementById('pfClose');
+
+  pfItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const thumbClass = item.querySelector('.pf-thumb').className.match(/ph-\d+/)[0];
+      const isVideo = item.dataset.type === 'video';
+      pfMedia.className = 'pf-lightbox-media ' + thumbClass;
+      pfMedia.innerHTML = isVideo
+        ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
+        : '<i class="fas fa-camera" style="font-size:2.2rem; opacity:.85;"></i>';
+      pfTitle.textContent = item.dataset.title;
+      pfDesc.textContent = item.dataset.desc;
+      pfCode.textContent = item.querySelector('.pf-code').textContent;
+      pfLightbox.classList.add('open');
+    });
+  });
+
+  function closeLightbox(){ pfLightbox.classList.remove('open'); }
+  pfClose.addEventListener('click', closeLightbox);
+  pfLightbox.addEventListener('click', (e) => { if (e.target === pfLightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 </body>
