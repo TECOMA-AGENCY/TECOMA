@@ -290,6 +290,21 @@
   }
   .pf-close:hover{background:rgba(255,255,255,.2);}
 
+  .pf-nav{
+    position:absolute; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.3); color:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; z-index:5;
+    transition:background .2s ease;
+  }
+  .pf-nav:hover{background:rgba(255,255,255,.22);}
+  .pf-nav-prev{left:1.2rem;}
+  .pf-nav-next{right:1.2rem;}
+  @media (max-width:640px){
+    .pf-nav{width:40px; height:40px; font-size:.95rem;}
+    .pf-nav-prev{left:.5rem;}
+    .pf-nav-next{right:.5rem;}
+  }
+
   @media (max-width:900px){ .pf-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:520px){ .pf-grid{grid-template-columns:1fr;} }
 </style>
@@ -553,6 +568,8 @@
 <!-- LIGHTBOX -->
 <div class="pf-lightbox" id="pfLightbox">
   <button class="pf-close" id="pfClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+  <button class="pf-nav pf-nav-prev" id="pfPrev" aria-label="Photo précédente"><i class="fas fa-chevron-left"></i></button>
+  <button class="pf-nav pf-nav-next" id="pfNext" aria-label="Photo suivante"><i class="fas fa-chevron-right"></i></button>
   <div class="pf-lightbox-inner">
     <div class="pf-lightbox-media" id="pfLightboxMedia"></div>
     <div class="pf-lightbox-body">
@@ -740,39 +757,53 @@
     });
   });
 
-  // ---------- Portfolio: lightbox ----------
+  // ---------- Portfolio: lightbox with slide navigation ----------
   const pfLightbox = document.getElementById('pfLightbox');
   const pfMedia = document.getElementById('pfLightboxMedia');
   const pfTitle = document.getElementById('pfLightboxTitle');
   const pfDesc = document.getElementById('pfLightboxDesc');
   const pfCode = document.getElementById('pfLightboxCode');
   const pfClose = document.getElementById('pfClose');
+  const pfPrev = document.getElementById('pfPrev');
+  const pfNext = document.getElementById('pfNext');
 
-  pfItems.forEach(item => {
+  const pfItemsArr = Array.from(pfItems);
+  let pfCurrentIndex = 0;
+
+  function renderLightbox(index){
+    pfCurrentIndex = (index + pfItemsArr.length) % pfItemsArr.length;
+    const item = pfItemsArr[pfCurrentIndex];
+    const thumb = item.querySelector('.pf-thumb');
+    const thumbClassMatch = thumb.className.match(/ph-\d+/);
+    const thumbClass = thumbClassMatch ? thumbClassMatch[0] : '';
+    const isVideo = item.dataset.type === 'video';
+    const img = thumb.querySelector('img');
+    const vid = thumb.querySelector('video');
+
+    pfMedia.className = 'pf-lightbox-media ' + thumbClass;
+    if (img) {
+      pfMedia.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + item.dataset.title + '">';
+    } else if (vid) {
+      pfMedia.innerHTML = '<video src="' + vid.querySelector('source').getAttribute('src') + '" controls autoplay></video>';
+    } else {
+      pfMedia.innerHTML = isVideo
+        ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
+        : '<i class="fas fa-camera" style="font-size:2.2rem; opacity:.85;"></i>';
+    }
+    pfTitle.textContent = item.dataset.title;
+    pfDesc.textContent = item.dataset.desc;
+    pfCode.textContent = item.querySelector('.pf-code').textContent;
+  }
+
+  pfItemsArr.forEach((item, i) => {
     item.addEventListener('click', () => {
-      const thumb = item.querySelector('.pf-thumb');
-      const thumbClassMatch = thumb.className.match(/ph-\d+/);
-      const thumbClass = thumbClassMatch ? thumbClassMatch[0] : '';
-      const isVideo = item.dataset.type === 'video';
-      const img = thumb.querySelector('img');
-      const vid = thumb.querySelector('video');
-
-      pfMedia.className = 'pf-lightbox-media ' + thumbClass;
-      if (img) {
-        pfMedia.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + item.dataset.title + '">';
-      } else if (vid) {
-        pfMedia.innerHTML = '<video src="' + vid.querySelector('source').getAttribute('src') + '" controls autoplay></video>';
-      } else {
-        pfMedia.innerHTML = isVideo
-          ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
-          : '<i class="fas fa-camera" style="font-size:2.2rem; opacity:.85;"></i>';
-      }
-      pfTitle.textContent = item.dataset.title;
-      pfDesc.textContent = item.dataset.desc;
-      pfCode.textContent = item.querySelector('.pf-code').textContent;
+      renderLightbox(i);
       pfLightbox.classList.add('open');
     });
   });
+
+  pfPrev.addEventListener('click', (e) => { e.stopPropagation(); renderLightbox(pfCurrentIndex - 1); });
+  pfNext.addEventListener('click', (e) => { e.stopPropagation(); renderLightbox(pfCurrentIndex + 1); });
 
   function closeLightbox(){
     pfLightbox.classList.remove('open');
@@ -781,7 +812,12 @@
   }
   pfClose.addEventListener('click', closeLightbox);
   pfLightbox.addEventListener('click', (e) => { if (e.target === pfLightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (!pfLightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') renderLightbox(pfCurrentIndex + 1);
+    if (e.key === 'ArrowLeft') renderLightbox(pfCurrentIndex - 1);
+  });
 </script>
 
 </body>
