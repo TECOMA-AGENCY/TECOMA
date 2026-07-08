@@ -233,6 +233,7 @@
     position:relative; overflow:hidden; cursor:pointer; background:var(--steel);
     flex:1; min-width:64px; transition:flex 0.6s cubic-bezier(.4,0,.2,1);
     touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+    -webkit-touch-callout:none; -webkit-user-select:none; user-select:none;
   }
   .pf-item.expanded{flex:9;}
   .pf-thumb{
@@ -847,18 +848,22 @@
     pfCode.textContent = item.querySelector('.pf-code').textContent;
   }
 
-  // Accordion: first click on a collapsed panel expands it (peek).
-  // Clicking a panel that's already expanded opens the full slideshow.
-  pfItemsArr.forEach((item, i) => {
-    item.addEventListener('click', () => {
-      if (item.classList.contains('expanded')) {
-        renderLightbox(i);
-        pfLightbox.classList.add('open');
-      } else {
-        pfItemsArr.forEach(it => it.classList.remove('expanded'));
-        item.classList.add('expanded');
-      }
-    });
+  // Accordion: first tap on a collapsed panel expands it (peek).
+  // Tapping a panel that's already expanded opens the full slideshow.
+  // Delegated on the container (instead of per-item listeners) for more
+  // reliable touch handling across mobile browsers.
+  const pfAccordionEl = document.getElementById('pfAccordion');
+  pfAccordionEl.addEventListener('click', (e) => {
+    const item = e.target.closest('.pf-item');
+    if (!item || !pfAccordionEl.contains(item)) return;
+    const i = pfItemsArr.indexOf(item);
+    if (item.classList.contains('expanded')) {
+      renderLightbox(i);
+      pfLightbox.classList.add('open');
+    } else {
+      pfItemsArr.forEach(it => it.classList.remove('expanded'));
+      item.classList.add('expanded');
+    }
   });
 
   pfPrev.addEventListener('click', (e) => { e.stopPropagation(); renderLightbox(pfCurrentIndex - 1); });
