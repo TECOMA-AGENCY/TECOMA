@@ -66,11 +66,11 @@
   nav.nav-desktop{
     display:none;
     align-items:center;
-    gap:.5rem;
+    gap:.15rem;
   }
   nav.nav-desktop a{
-    color:#D8E1EC; font-weight:500; font-size:.9rem; white-space:nowrap;
-    padding:.6rem 1.1rem; border-radius:4px; border:1px solid transparent;
+    color:#D8E1EC; font-weight:500; font-size:.83rem; white-space:nowrap;
+    padding:.55rem .75rem; border-radius:4px; border:1px solid transparent;
     transition:background .2s ease, border-color .2s ease, color .2s ease;
   }
   nav.nav-desktop a:hover{
@@ -104,7 +104,7 @@
   }
   #mobileMenu a:hover{background:rgba(255,255,255,.05); color:#fff;}
 
-  @media (min-width:1010px){
+  @media (min-width:1180px){
     nav.nav-desktop{display:flex;}
     .menu-btn, #mobileMenu{display:none;}
   }
@@ -337,7 +337,74 @@
       justify-content:flex-start; padding:0 1.1rem; gap:.6rem; font-size:.78rem;
     }
     .pf-item.expanded .pf-thumb i{font-size:1.3rem;}
+  }  /* ---------- hero v2: eyebrow / title / photo ---------- */
+  .hero-eyebrow{
+    display:flex; align-items:center; gap:.9rem;
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:#B9C7D8;
   }
+  .hero-eyebrow .dot{width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0;}
+  .hero-eyebrow .line{flex:0 0 90px; height:1px; background:rgba(255,255,255,.28);}
+  .hero-title{
+    color:#fff; font-family:'Fraunces',serif; font-weight:700; line-height:1.12;
+    font-size:clamp(2.1rem, 4vw, 3.1rem); max-width:15ch;
+  }
+  .hero-title .accent{color:var(--red);}
+
+  .hero-photo{
+    position:relative; border-radius:4px; overflow:hidden; min-height:400px; height:100%;
+    background:linear-gradient(150deg, var(--steel), var(--navy) 75%);
+    border:1px solid rgba(255,255,255,.15);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-photo::before{
+    content:""; position:absolute; top:-20%; left:38%; width:60%; height:150%;
+    background:linear-gradient(135deg, var(--red), var(--navy) 60%);
+    transform:rotate(14deg); opacity:.55;
+  }
+  .hero-photo-placeholder{
+    position:relative; z-index:2; text-align:center; color:#C9D3DE; padding:2rem;
+    border:1.5px dashed rgba(255,255,255,.35); border-radius:4px; margin:1.4rem;
+    background:rgba(11,37,69,.35);
+  }
+  .hero-photo-placeholder i{font-size:2rem; opacity:.75; margin-bottom:.8rem; display:block;}
+  .hero-photo-placeholder .t1{font-weight:600; color:#fff; font-size:.95rem;}
+  .hero-photo-placeholder .t2{font-family:'IBM Plex Mono',monospace; font-size:.72rem; margin-top:.4rem; color:#9FB2C9;}
+
+  .hero-badge{
+    position:absolute; top:1rem; right:1rem; z-index:3;
+    background:rgba(6,16,32,.55); backdrop-filter:blur(4px);
+    border:1px solid rgba(255,255,255,.2); border-radius:4px;
+    padding:.7rem 1rem; display:flex; align-items:center; gap:.6rem;
+  }
+  .hero-badge svg{width:30px; height:30px; flex-shrink:0;}
+  .hero-badge .name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:.85rem; line-height:1.1;}
+  .hero-badge .tag{color:#B9C7D8; font-family:'IBM Plex Mono',monospace; font-size:.52rem; letter-spacing:.1em;}
+
+  /* ---------- feature icon strip ---------- */
+  .feature-strip{background:var(--navy); border-top:1px solid rgba(255,255,255,.08);}
+  .feature-item{display:flex; align-items:flex-start; gap:.9rem;}
+  .feature-icon{
+    flex-shrink:0; width:52px; height:52px; border-radius:50%; border:1.5px solid var(--red);
+    display:flex; align-items:center; justify-content:center; color:var(--red); font-size:1.1rem;
+  }
+  .feature-item h4{color:#fff; font-size:.98rem; font-weight:600; margin:0 0 .3rem; font-family:'Fraunces',serif;}
+  .feature-item p{color:#9FB2C9; font-size:.83rem; line-height:1.5; margin:0;}
+
+  /* ---------- stats / quote bar ---------- */
+  .stats-bar{background:var(--paper); border-top:1px solid var(--line);}
+  .stat-item{display:flex; align-items:center; gap:.8rem;}
+  .stat-item i{color:var(--navy); font-size:1.3rem; flex-shrink:0; width:28px; text-align:center;}
+  .stat-item .label{
+    font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.06em; font-weight:600;
+    color:var(--navy); text-transform:uppercase;
+  }
+  .stat-item .sub{font-size:.8rem; color:var(--slate); margin-top:.15rem;}
+  .quote-box{
+    background:var(--navy); border-radius:4px; padding:1.4rem 1.6rem; color:#DDE4EC;
+    font-size:.92rem; line-height:1.6; position:relative;
+  }
+  .quote-box i{color:var(--red); font-size:1.2rem; margin-right:.5rem; opacity:.85;}
+  .quote-box .hl{color:#E7A5A8; font-weight:600;}
 </style>
 
 </head>
@@ -355,15 +422,17 @@
       </svg>
       <div>
         <div class="brand-name">TECOMA</div>
-        <div class="brand-tag">HR · Compliance · Safety</div>
+        <div class="brand-tag" style="font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; font-size:.72rem; line-height:1.3; max-width:210px;">Ressources Humaines, Conformité &amp; Sécurité au Travail</div>
       </div>
     </a>
 
     <nav class="nav-desktop" aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#approche">Approche</a>
+      <a href="#accueil" style="color:var(--red);">Accueil</a>
       <a href="#apropos">À propos</a>
+      <a href="#services">Nos Services</a>
+      <a href="#services">Formations</a>
+      <a href="#services">Audits &amp; Conformité</a>
+      <a href="#portfolio">Portfolio</a>
       <a href="#contact">Contact</a>
       <a href="#contact" class="nav-cta">Nous contacter</a>
     </nav>
@@ -374,10 +443,12 @@
   </div>
 
   <nav id="mobileMenu" aria-label="Navigation mobile">
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#approche">Approche</a>
+    <a href="#accueil">Accueil</a>
     <a href="#apropos">À propos</a>
+    <a href="#services">Nos Services</a>
+    <a href="#services">Formations</a>
+    <a href="#services">Audits &amp; Conformité</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -388,33 +459,34 @@
     <div class="grid lg:grid-cols-5 gap-14 items-center">
 
       <div class="lg:col-span-3">
-        <span class="ref-tag"><span class="dot"></span>Technical Education, Compliance &amp; Management Agency</span>
-        <h1 class="mt-6">La conformité sociale et la sécurité au travail, pilotées avec <em>rigueur</em>.</h1>
+        <span class="hero-eyebrow"><span class="dot"></span>Engagés pour vos résultats<span class="line"></span></span>
+        <h1 class="hero-title mt-6">L'Excellence au service de la Conformité et de la <span class="accent">Performance.</span></h1>
         <p class="lead mt-6">
-          TECOMA accompagne les entreprises haïtiennes exportatrices dans leur mise en conformité WRAP et C-TPAT,
-          la gestion de leurs ressources humaines et la maîtrise de leurs risques professionnels — avec une expertise
-          locale ancrée dans les standards internationaux.
+          TECOMA accompagne les entreprises en Haïti avec des solutions intégrées en ressources humaines,
+          conformité sociale, sécurité au travail, audit et formation professionnelle.
         </p>
         <div class="flex flex-wrap gap-4 mt-9">
-          <a href="#contact" class="btn btn-primary">Planifier un échange <i class="fas fa-arrow-right"></i></a>
-          <a href="#services" class="btn btn-ghost">Nos services</a>
+          <a href="#services" class="btn btn-primary"><i class="fas fa-people-group"></i> Découvrir nos services</a>
+          <a href="#contact" class="btn btn-ghost"><i class="fas fa-phone"></i> Nous contacter</a>
         </div>
       </div>
 
       <div class="lg:col-span-2 hidden lg:block">
-        <div class="hero-file">
-          <div class="flex justify-between items-start mb-6">
-            <span class="font-mono text-xs" style="color:var(--slate)">DOSSIER&nbsp;·&nbsp;CONFORMITÉ SOCIALE</span>
-            <span class="stamp">RÉF. TC-2026</span>
+        <div class="hero-photo">
+          <div class="hero-badge">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 C12 42 4 34 4 23 V10 Z" fill="#0B2545" stroke="#C1272D" stroke-width="1.5"/>
+              <text x="24" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#F7F5F1" font-weight="600">TC</text>
+            </svg>
+            <div>
+              <div class="name">TECOMA</div>
+              <div class="tag">CONFORMITÉ · SÉCURITÉ · PERFORMANCE</div>
+            </div>
           </div>
-          <ul class="space-y-3 text-sm" style="color:var(--navy)">
-            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Audit WRAP planifié</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Support C-TPAT en cours</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Évaluation HSE terrain</li>
-            <li class="flex items-center gap-2"><i class="fas fa-check text-red-600"></i> Plan de prévention validé</li>
-          </ul>
-          <div class="mt-6 pt-4" style="border-top:1px solid var(--line)">
-            <span class="font-mono text-xs" style="color:var(--slate)">Statut : conforme aux exigences client</span>
+          <div class="hero-photo-placeholder">
+            <i class="fas fa-camera-retro"></i>
+            <div class="t1">Photo de l'équipe TECOMA</div>
+            <div class="t2">Envoyez-moi votre photo pour l'intégrer ici</div>
           </div>
         </div>
       </div>
@@ -423,13 +495,88 @@
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust">
-  <div class="container py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-    <div class="trust-item"><i class="fas fa-stamp"></i> Normes WRAP &amp; C-TPAT</div>
-    <div class="trust-item"><i class="fas fa-map-location-dot"></i> Expertise locale, Haïti</div>
-    <div class="trust-item"><i class="fas fa-user-shield"></i> Confidentialité garantie</div>
-    <div class="trust-item"><i class="fas fa-sliders"></i> Accompagnement sur mesure</div>
+<!-- FEATURE STRIP -->
+<div class="feature-strip py-12">
+  <div class="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-people-group"></i></div>
+      <div>
+        <h4>Ressources Humaines</h4>
+        <p>Recrutement, placement temporaire et gestion RH.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+      <div>
+        <h4>Conformité Sociale</h4>
+        <p>Audits sociaux, WRAP, C-TPAT et standards internationaux.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-hard-hat"></i></div>
+      <div>
+        <h4>Sécurité au Travail</h4>
+        <p>Évaluations des risques, équipements, EPI et prévention.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div>
+        <h4>Formations</h4>
+        <p>Formations professionnelles sur mesure pour vos équipes.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-clipboard-check"></i></div>
+      <div>
+        <h4>Audits &amp; Qualité</h4>
+        <p>Audits internes, assurance qualité et amélioration continue.</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon"><i class="fas fa-fire-extinguisher"></i></div>
+      <div>
+        <h4>Équipements &amp; Sécurité</h4>
+        <p>Recharge d'extincteurs et vente d'équipements de sécurité.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS / QUOTE BAR -->
+<div class="stats-bar py-10">
+  <div class="container grid md:grid-cols-2 lg:grid-cols-5 gap-8 items-center">
+    <div class="stat-item">
+      <i class="fas fa-award"></i>
+      <div>
+        <div class="label">+10 ans d'expérience</div>
+        <div class="sub">En Haïti depuis septembre 2014</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-building"></i>
+      <div>
+        <div class="label">Entreprise haïtienne</div>
+        <div class="sub">Engagée pour le développement</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-people-group"></i>
+      <div>
+        <div class="label">Des clients satisfaits</div>
+        <div class="sub">Plus de 30 partenaires</div>
+      </div>
+    </div>
+    <div class="stat-item">
+      <i class="fas fa-shield-heart"></i>
+      <div>
+        <div class="label">Qualité &amp; intégrité</div>
+        <div class="sub">Notre engagement au quotidien</div>
+      </div>
+    </div>
+    <div class="quote-box lg:col-span-1">
+      <i class="fas fa-quote-left"></i>Travaillons ensemble pour des entreprises plus <span class="hl">sûres</span>, <span class="hl">conformes</span> et <span class="hl">performantes</span>.
+    </div>
   </div>
 </div>
 
@@ -764,7 +911,7 @@
     menuBtn.innerHTML = isOpen ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
   });
 
-  const desktopQuery = window.matchMedia('(min-width:1010px)');
+  const desktopQuery = window.matchMedia('(min-width:1180px)');
   desktopQuery.addEventListener('change', (e) => {
     if (e.matches) {
       mobileMenu.classList.remove('open');
