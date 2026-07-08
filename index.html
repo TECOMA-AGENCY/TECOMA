@@ -361,6 +361,9 @@
     background:linear-gradient(135deg, var(--red), var(--navy) 60%);
     transform:rotate(14deg); opacity:.55;
   }
+  .hero-photo--image::before{display:none;} /* the real photo already has its own diagonal design baked in */
+  .hero-photo--image{min-height:0; aspect-ratio:624/323; background:var(--navy);}
+  .hero-photo-img{width:100%; height:100%; object-fit:cover; display:block;}
   .hero-photo-placeholder{
     position:relative; z-index:2; text-align:center; color:#C9D3DE; padding:2rem;
     border:1.5px dashed rgba(255,255,255,.35); border-radius:4px; margin:1.4rem;
@@ -500,22 +503,8 @@
       </div>
 
       <div class="hero-grid-photo">
-        <div class="hero-photo">
-          <div class="hero-badge">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 C12 42 4 34 4 23 V10 Z" fill="#0B2545" stroke="#C1272D" stroke-width="1.5"/>
-              <text x="24" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#F7F5F1" font-weight="600">TC</text>
-            </svg>
-            <div>
-              <div class="name">TECOMA</div>
-              <div class="tag">CONFORMITÉ · SÉCURITÉ · PERFORMANCE</div>
-            </div>
-          </div>
-          <div class="hero-photo-placeholder">
-            <i class="fas fa-camera-retro"></i>
-            <div class="t1">Photo de l'équipe TECOMA</div>
-            <div class="t2">Envoyez-moi votre photo pour l'intégrer ici</div>
-          </div>
+        <div class="hero-photo hero-photo--image">
+          <img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/blob/main/Image_tecoma-%208%20juil.%202026,%2016_08_05.png?raw=true" alt="Équipe TECOMA — Technical Education, Compliance & Management Agency" class="hero-photo-img">
         </div>
       </div>
 
