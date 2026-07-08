@@ -441,7 +441,35 @@
   @media (min-width:1024px){ .about-grid{grid-template-columns:2fr 1fr;} }
 
   .contact-grid{display:grid; grid-template-columns:1fr; gap:3rem;}
-  @media (min-width:1024px){ .contact-grid{grid-template-columns:2fr 3fr;} }
+  @media (min-width:1024px){ .contact-grid{grid-template-columns:2fr 3fr;} }  /* ---------- footer ---------- */
+  .site-footer{background:var(--navy); padding:4rem 0 0;}
+  .footer-grid{
+    display:grid; grid-template-columns:1fr; gap:2.8rem; padding-bottom:3rem;
+  }
+  @media (min-width:640px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+  @media (min-width:1024px){ .footer-grid{grid-template-columns:1.6fr 1fr 1fr 1fr;} }
+  .footer-brand p{color:#9FB2C9; font-size:.87rem; line-height:1.7; max-width:30ch; margin:0 0 1.3rem;}
+  .footer-social{display:flex; gap:.7rem;}
+  .footer-social a{
+    width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.08);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:.9rem;
+    transition:background .2s ease;
+  }
+  .footer-social a:hover{background:var(--red);}
+  .footer-col h5{
+    color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.02rem; margin:0 0 1.2rem;
+  }
+  .footer-col{display:flex; flex-direction:column; gap:.75rem;}
+  .footer-col a, .footer-col span{
+    color:#9FB2C9; font-size:.87rem; line-height:1.5; display:flex; align-items:flex-start; gap:.5rem;
+  }
+  .footer-col a:hover{color:#fff;}
+  .footer-col a i, .footer-col span i{color:var(--red); margin-top:.2rem; width:14px; flex-shrink:0;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1); padding:1.5rem 0;}
+  .footer-bottom .container{
+    text-align:center; color:#7E8FA3; font-size:.8rem;
+  }
+  .footer-bottom .font-mono{color:#7E8FA3;}
 </style>
 
 </head>
@@ -912,10 +940,50 @@
   </div>
 </section>
 
-<footer class="py-8">
-  <div class="container flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
-    <span>© 2026 TECOMA — Technical Education, Compliance &amp; Management Agency</span>
-    <span class="font-mono text-xs">Tous droits réservés</span>
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <span class="logo-chip" style="margin-bottom:1rem;">
+        <img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/blob/main/Logo_TECOMA_01-removebg-preview.png?raw=true" alt="TECOMA" class="logo-full" style="height:36px;">
+      </span>
+      <p>Votre partenaire de confiance pour les ressources humaines, la conformité sociale et la sécurité au travail en Haïti, depuis 2014.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h5>Ressources Humaines</h5>
+      <a href="#services">Recrutement et sélection</a>
+      <a href="#services">Placement temporaire et permanent</a>
+      <a href="#services">Externalisation RH</a>
+      <a href="#services">Développement des compétences</a>
+    </div>
+
+    <div class="footer-col">
+      <h5>Audit &amp; Sécurité</h5>
+      <a href="#services">Audit WRAP &amp; C-TPAT</a>
+      <a href="#services">ISO 9001 · 45001 · 14001</a>
+      <a href="#services">Formations sécurité au travail</a>
+      <a href="#services">Évaluation des risques</a>
+    </div>
+
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="mailto:contact.tecoma@gmail.com"><i class="fas fa-envelope"></i> contact.tecoma@gmail.com</a>
+      <a href="tel:+50948973645"><i class="fas fa-phone"></i> +509 48 97 36 45</a>
+      <span><i class="fas fa-location-dot"></i> Haïti — interventions sur site</span>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      © 2026 TECOMA — Technical Education, Compliance &amp; Management Agency. Tous droits réservés. <span class="font-mono">Depuis 2014</span>
+    </div>
   </div>
 </footer>
 
