@@ -404,7 +404,35 @@
     font-size:.92rem; line-height:1.6; position:relative;
   }
   .quote-box i{color:var(--red); font-size:1.2rem; margin-right:.5rem; opacity:.85;}
-  .quote-box .hl{color:#E7A5A8; font-weight:600;}
+  .quote-box .hl{color:#E7A5A8; font-weight:600;}  /* ---------- native layout grids (replace Tailwind grid utilities so
+     structure never collapses if the Tailwind CDN is slow/blocked) ---------- */
+  .hero-grid{display:flex; flex-wrap:wrap; gap:3.2rem; align-items:center;}
+  .hero-grid-text{flex:1 1 480px; min-width:0;}
+  .hero-grid-photo{flex:1 1 380px; min-width:320px; display:none;}
+  .hero-btn-row{display:flex; flex-wrap:wrap; gap:1rem;}
+  @media (min-width:1024px){
+    .hero-grid-photo{display:block;}
+  }
+
+  .feature-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2rem;}
+  @media (min-width:640px){ .feature-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (min-width:1180px){ .feature-grid{grid-template-columns:repeat(6,1fr);} }
+
+  .stats-grid{display:grid; grid-template-columns:1fr; gap:2rem; align-items:center;}
+  @media (min-width:640px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (min-width:1180px){ .stats-grid{grid-template-columns:repeat(5,1fr);} }
+
+  .svc-grid{display:grid; grid-template-columns:1fr; gap:1.5rem;}
+  @media (min-width:768px){ .svc-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .approach-grid{display:grid; grid-template-columns:1fr; gap:4rem;}
+  @media (min-width:1024px){ .approach-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .about-grid{display:grid; grid-template-columns:1fr; gap:3.5rem; align-items:center;}
+  @media (min-width:1024px){ .about-grid{grid-template-columns:2fr 1fr;} }
+
+  .contact-grid{display:grid; grid-template-columns:1fr; gap:3rem;}
+  @media (min-width:1024px){ .contact-grid{grid-template-columns:2fr 3fr;} }
 </style>
 
 </head>
@@ -456,22 +484,22 @@
 <!-- HERO -->
 <section id="accueil" class="hero">
   <div class="container hero-inner">
-    <div class="grid lg:grid-cols-5 gap-14 items-center">
+    <div class="hero-grid">
 
-      <div class="lg:col-span-3">
+      <div class="hero-grid-text">
         <span class="hero-eyebrow"><span class="dot"></span>Engagés pour vos résultats<span class="line"></span></span>
         <h1 class="hero-title mt-6">L'Excellence au service de la Conformité et de la <span class="accent">Performance.</span></h1>
         <p class="lead mt-6">
           TECOMA accompagne les entreprises en Haïti avec des solutions intégrées en ressources humaines,
           conformité sociale, sécurité au travail, audit et formation professionnelle.
         </p>
-        <div class="flex flex-wrap gap-4 mt-9">
+        <div class="hero-btn-row mt-9">
           <a href="#services" class="btn btn-primary"><i class="fas fa-people-group"></i> Découvrir nos services</a>
           <a href="#contact" class="btn btn-ghost"><i class="fas fa-phone"></i> Nous contacter</a>
         </div>
       </div>
 
-      <div class="lg:col-span-2 hidden lg:block">
+      <div class="hero-grid-photo">
         <div class="hero-photo">
           <div class="hero-badge">
             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -497,7 +525,7 @@
 
 <!-- FEATURE STRIP -->
 <div class="feature-strip py-12">
-  <div class="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+  <div class="container feature-grid">
     <div class="feature-item">
       <div class="feature-icon"><i class="fas fa-people-group"></i></div>
       <div>
@@ -545,7 +573,7 @@
 
 <!-- STATS / QUOTE BAR -->
 <div class="stats-bar py-10">
-  <div class="container grid md:grid-cols-2 lg:grid-cols-5 gap-8 items-center">
+  <div class="container stats-grid">
     <div class="stat-item">
       <i class="fas fa-award"></i>
       <div>
@@ -574,7 +602,7 @@
         <div class="sub">Notre engagement au quotidien</div>
       </div>
     </div>
-    <div class="quote-box lg:col-span-1">
+    <div class="quote-box">
       <i class="fas fa-quote-left"></i>Travaillons ensemble pour des entreprises plus <span class="hl">sûres</span>, <span class="hl">conformes</span> et <span class="hl">performantes</span>.
     </div>
   </div>
@@ -592,7 +620,7 @@
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-6 mt-14">
+    <div class="svc-grid mt-14">
 
       <div class="svc-card reveal">
         <span class="svc-code">RH·01</span>
@@ -776,7 +804,7 @@
 
 <!-- APPROCHE -->
 <section id="approche" class="py-24" style="background:var(--paper); border-top:1px solid var(--line);">
-  <div class="container grid lg:grid-cols-2 gap-16">
+  <div class="container approach-grid">
     <div class="reveal">
       <span class="eyebrow">Notre méthode</span>
       <h2 class="section-title">Une démarche en trois temps, du diagnostic au suivi.</h2>
@@ -810,8 +838,8 @@
 
 <!-- À PROPOS -->
 <section id="apropos" class="about-wrap py-24">
-  <div class="container relative grid lg:grid-cols-3 gap-14 items-center">
-    <div class="lg:col-span-2 about-text reveal">
+  <div class="container relative about-grid">
+    <div class="about-grid-text about-text reveal">
       <span class="eyebrow" style="color:#E7A5A8">À propos de TECOMA</span>
       <h2 class="section-title" style="color:#fff">Un partenaire technique pour une croissance responsable.</h2>
       <p class="mt-6">
@@ -850,8 +878,8 @@
 
 <!-- CONTACT -->
 <section id="contact" class="py-24 bg-white">
-  <div class="container grid lg:grid-cols-5 gap-12">
-    <div class="lg:col-span-2 reveal">
+  <div class="container contact-grid">
+    <div class="contact-grid-left reveal">
       <span class="eyebrow">Contact</span>
       <h2 class="section-title">Discutons de vos enjeux de conformité.</h2>
       <p class="mt-5 text-base leading-relaxed">
@@ -860,7 +888,7 @@
       </p>
     </div>
 
-    <div class="lg:col-span-3 reveal">
+    <div class="contact-grid-right reveal">
       <div class="contact-card">
         <div class="contact-row">
           <i class="fas fa-envelope"></i>
