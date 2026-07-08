@@ -40,14 +40,12 @@
 
   :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
 
-  /* ---------- reveal on scroll ---------- */
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:none;}
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none; transition:none;}
   }
 
-  /* ---------- header ---------- */
   header{
     position:fixed; top:0; left:0; width:100%; z-index:50;
     background:rgba(11,37,69,.97);
@@ -65,9 +63,6 @@
   .brand-name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.35rem; letter-spacing:.01em; line-height:1.1;}
   .brand-tag{color:#9FB2C9; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;}
 
-  /* Desktop nav: hidden by default, shown from 860px up.
-     Written in plain CSS (no Tailwind dependency) so it can never
-     collapse or double up with the mobile menu if the CDN is slow/blocked. */
   nav.nav-desktop{
     display:none;
     align-items:center;
@@ -96,7 +91,6 @@
   }
   .menu-btn:hover{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.3);}
 
-  /* Mobile menu: closed by default via max-height, no reliance on utility classes */
   #mobileMenu{
     background:var(--steel);
     border-top:1px solid rgba(255,255,255,.1);
@@ -115,7 +109,6 @@
     .menu-btn, #mobileMenu{display:none;}
   }
 
-  /* ---------- hero ---------- */
   .hero{
     position:relative; overflow:hidden;
     background:var(--navy);
@@ -164,18 +157,15 @@
     border:1.5px solid var(--red); display:inline-block; padding:.25rem .6rem; transform:rotate(-4deg);
   }
 
-  /* ---------- trust strip ---------- */
   .trust{background:#fff; border-bottom:1px solid var(--line); border-top:1px solid var(--line);}
   .trust-item{display:flex; align-items:center; gap:.7rem; font-size:.88rem; color:var(--navy); font-weight:500;}
   .trust-item i{color:var(--red);}
 
-  /* ---------- section headers ---------- */
   .eyebrow{
     font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--red); font-weight:500;
   }
   .section-title{color:var(--navy); font-size:clamp(1.8rem,3vw,2.5rem); font-weight:600; margin-top:.5rem;}
 
-  /* ---------- services ---------- */
   .svc-card{
     background:#fff; border:1px solid var(--line); padding:2.1rem 1.9rem; position:relative;
     transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
@@ -197,7 +187,6 @@
   .svc-card li:first-child{border-top:none;}
   .svc-card li i{color:var(--red); font-size:.7rem; margin-top:.35rem;}
 
-  /* ---------- approach ---------- */
   .approach-step{position:relative; padding-left:3.6rem;}
   .approach-step .num{
     position:absolute; left:0; top:0; font-family:'Fraunces',serif; font-weight:600; font-size:1.6rem; color:var(--red);
@@ -206,7 +195,6 @@
   .approach-step h4{color:var(--navy); font-weight:600; font-size:1.05rem; margin:0 0 .4rem;}
   .approach-line{position:absolute; left:1.3rem; top:2.6rem; bottom:-2.4rem; width:1px; background:var(--line);}
 
-  /* ---------- about / seal ---------- */
   .about-wrap{background:var(--navy); color:#DDE4EC; position:relative; overflow:hidden;}
   .about-wrap::before{
     content:""; position:absolute; inset:0;
@@ -214,17 +202,12 @@
     background-size:60px 60px;
   }
   .about-text p{line-height:1.85; font-size:1.02rem; color:#C4D0DD;}
-  .seal{
-    width:190px; height:190px; margin:0 auto; position:relative;
-  }
+  .seal{width:190px; height:190px; margin:0 auto; position:relative;}
   .seal svg{width:100%; height:100%;}
   .seal-wrap{transform:rotate(-8deg); transition:transform .8s ease;}
   .seal-wrap.in{transform:rotate(-8deg);}
 
-  /* ---------- contact ---------- */
-  .contact-card{
-    background:#fff; border:1px solid var(--line); padding:2.6rem;
-  }
+  .contact-card{background:#fff; border:1px solid var(--line); padding:2.6rem;}
   .contact-row{display:flex; align-items:flex-start; gap:1rem; padding:1.1rem 0; border-top:1px solid #EFECE4;}
   .contact-row:first-child{border-top:none;}
   .contact-row i{color:var(--red); width:20px; margin-top:.2rem;}
@@ -242,19 +225,15 @@
   .pf-filter:hover{border-color:var(--navy);}
   .pf-filter.active{background:var(--navy); border-color:var(--navy); color:#fff;}
 
-  .pf-grid{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem;
-  }
-  .pf-item{
-    position:relative; border-radius:2px; overflow:hidden; cursor:pointer;
-    aspect-ratio:4/3;
-  }
+  .pf-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem;}
+  .pf-item{position:relative; border-radius:2px; overflow:hidden; cursor:pointer; aspect-ratio:4/3; background:var(--steel);}
   .pf-thumb{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
     color:rgba(255,255,255,.92); transition:transform .5s ease;
   }
   .pf-item:hover .pf-thumb{transform:scale(1.05);}
   .pf-thumb i{font-size:1.6rem; opacity:.85; margin-bottom:.5rem;}
+  .pf-thumb img, .pf-thumb video{width:100%; height:100%; object-fit:cover; display:block;}
   .ph-1{background:linear-gradient(135deg,#0B2545,#1D3A5F);}
   .ph-2{background:linear-gradient(135deg,#1D3A5F,#0B2545 80%);}
   .ph-3{background:linear-gradient(135deg,#8C1418,#C1272D);}
@@ -269,26 +248,22 @@
   .pf-badge{
     position:absolute; top:.8rem; left:.8rem; font-family:'IBM Plex Mono',monospace; font-size:.62rem;
     letter-spacing:.1em; padding:.28rem .55rem; border-radius:999px; background:rgba(0,0,0,.35);
-    border:1px solid rgba(255,255,255,.3);
+    border:1px solid rgba(255,255,255,.3); color:#fff; z-index:2;
   }
   .pf-play{
     position:absolute; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,.16);
     border:1.5px solid rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center;
-    top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem;
+    top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem; z-index:2; color:#fff;
   }
   .pf-cap{
-    position:absolute; left:0; right:0; bottom:0; padding:1rem 1.1rem;
+    position:absolute; left:0; right:0; bottom:0; padding:1rem 1.1rem; z-index:2;
     background:linear-gradient(to top, rgba(0,0,0,.65), transparent);
   }
   .pf-code{font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.1em; color:#E7A5A8;}
   .pf-cap h4{margin:.2rem 0 0; font-size:.95rem; font-weight:600; color:#fff;}
   .pf-item.pf-hide{display:none;}
+  .pf-note{font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:#8B95A0; text-align:center;}
 
-  .pf-note{
-    font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:#8B95A0; text-align:center;
-  }
-
-  /* lightbox */
   .pf-lightbox{
     position:fixed; inset:0; z-index:100; background:rgba(6,16,32,.94);
     display:none; align-items:center; justify-content:center; padding:2rem;
@@ -298,7 +273,8 @@
     max-width:760px; width:100%; background:var(--paper); border-radius:2px; overflow:hidden;
     box-shadow:0 30px 80px rgba(0,0,0,.5);
   }
-  .pf-lightbox-media{height:min(60vh,420px); display:flex; align-items:center; justify-content:center; color:#fff;}
+  .pf-lightbox-media{height:min(60vh,420px); display:flex; align-items:center; justify-content:center; color:#fff; overflow:hidden;}
+  .pf-lightbox-media img, .pf-lightbox-media video{width:100%; height:100%; object-fit:cover;}
   .pf-lightbox-body{padding:1.5rem 1.7rem;}
   .pf-lightbox-body h4{color:var(--navy); margin:.3rem 0 .4rem; font-size:1.15rem;}
   .pf-lightbox-body p{margin:0; font-size:.9rem; color:var(--slate);}
@@ -309,12 +285,8 @@
   }
   .pf-close:hover{background:rgba(255,255,255,.2);}
 
-  @media (max-width:900px){
-    .pf-grid{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width:520px){
-    .pf-grid{grid-template-columns:1fr;}
-  }
+  @media (max-width:900px){ .pf-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .pf-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 
@@ -499,9 +471,15 @@
 
     <div class="pf-grid mt-12 reveal">
 
+      <!--
+        POUR AJOUTER UNE VRAIE PHOTO :
+        remplacez le contenu de .pf-thumb par une balise <img src="VOTRE-LIEN" alt="...">
+        Le lien doit pointer DIRECTEMENT vers le fichier image (se terminant par .jpg/.png/.webp),
+        jamais vers une page GitHub de type github.com/.../commit/... ou github.com/.../blob/...
+        -->
       <div class="pf-item" data-type="photo" data-title="Formation aux premiers secours" data-desc="Session pratique animée par nos formateurs certifiés, en atelier.">
-        <div class="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/commit/cd09dd414ace2a01d14984c10819886f9ce5c0c0"><i class="fas fa-camera"></i></div>
-        <span class="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/commit/cd09dd414ace2a01d14984c10819886f9ce5c0c0">PHOTO</span>
+        <div class="pf-thumb ph-1"><i class="fas fa-camera"></i></div>
+        <span class="pf-badge">PHOTO</span>
         <div class="pf-cap"><span class="pf-code">PF·01 · SÉCURITÉ</span><h4>Formation premiers secours</h4></div>
       </div>
 
@@ -715,7 +693,6 @@
     menuBtn.innerHTML = isOpen ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
   });
 
-  // Close the mobile menu automatically once the viewport reaches desktop size
   const desktopQuery = window.matchMedia('(min-width:1010px)');
   desktopQuery.addEventListener('change', (e) => {
     if (e.matches) {
@@ -725,7 +702,6 @@
     }
   });
 
-  // Close menu after tapping a link
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
     menuBtn.setAttribute('aria-expanded', 'false');
@@ -767,12 +743,23 @@
 
   pfItems.forEach(item => {
     item.addEventListener('click', () => {
-      const thumbClass = item.querySelector('.pf-thumb').className.match(/ph-\d+/)[0];
+      const thumb = item.querySelector('.pf-thumb');
+      const thumbClassMatch = thumb.className.match(/ph-\d+/);
+      const thumbClass = thumbClassMatch ? thumbClassMatch[0] : '';
       const isVideo = item.dataset.type === 'video';
+      const img = thumb.querySelector('img');
+      const vid = thumb.querySelector('video');
+
       pfMedia.className = 'pf-lightbox-media ' + thumbClass;
-      pfMedia.innerHTML = isVideo
-        ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
-        : '<i class="fas fa-camera" style="font-size:2.2rem; opacity:.85;"></i>';
+      if (img) {
+        pfMedia.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + item.dataset.title + '">';
+      } else if (vid) {
+        pfMedia.innerHTML = '<video src="' + vid.querySelector('source').getAttribute('src') + '" controls autoplay></video>';
+      } else {
+        pfMedia.innerHTML = isVideo
+          ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
+          : '<i class="fas fa-camera" style="font-size:2.2rem; opacity:.85;"></i>';
+      }
       pfTitle.textContent = item.dataset.title;
       pfDesc.textContent = item.dataset.desc;
       pfCode.textContent = item.querySelector('.pf-code').textContent;
@@ -780,7 +767,11 @@
     });
   });
 
-  function closeLightbox(){ pfLightbox.classList.remove('open'); }
+  function closeLightbox(){
+    pfLightbox.classList.remove('open');
+    const vid = pfMedia.querySelector('video');
+    if (vid) vid.pause();
+  }
   pfClose.addEventListener('click', closeLightbox);
   pfLightbox.addEventListener('click', (e) => { if (e.target === pfLightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
