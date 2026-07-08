@@ -225,14 +225,20 @@
   .pf-filter:hover{border-color:var(--navy);}
   .pf-filter.active{background:var(--navy); border-color:var(--navy); color:#fff;}
 
-  .pf-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem;}
-  .pf-item{position:relative; border-radius:2px; overflow:hidden; cursor:pointer; aspect-ratio:4/3; background:var(--steel);}
+  /* ---------- accordion gallery ---------- */
+  .pf-accordion{
+    display:flex; gap:.5rem; height:460px; border-radius:2px; overflow:hidden;
+  }
+  .pf-item{
+    position:relative; overflow:hidden; cursor:pointer; background:var(--steel);
+    flex:1; min-width:64px; transition:flex 0.6s cubic-bezier(.4,0,.2,1);
+  }
+  .pf-item.expanded{flex:9;}
   .pf-thumb{
     position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    color:rgba(255,255,255,.92); transition:transform .5s ease;
+    color:rgba(255,255,255,.92);
   }
-  .pf-item:hover .pf-thumb{transform:scale(1.05);}
-  .pf-thumb i{font-size:1.6rem; opacity:.85; margin-bottom:.5rem;}
+  .pf-thumb i{font-size:1.6rem; opacity:.85;}
   .pf-thumb img, .pf-thumb video{width:100%; height:100%; object-fit:cover; display:block;}
   .ph-1{background:linear-gradient(135deg,#0B2545,#1D3A5F);}
   .ph-2{background:linear-gradient(135deg,#1D3A5F,#0B2545 80%);}
@@ -247,20 +253,34 @@
 
   .pf-badge{
     position:absolute; top:.8rem; left:.8rem; font-family:'IBM Plex Mono',monospace; font-size:.62rem;
-    letter-spacing:.1em; padding:.28rem .55rem; border-radius:999px; background:rgba(0,0,0,.35);
-    border:1px solid rgba(255,255,255,.3); color:#fff; z-index:2;
+    letter-spacing:.1em; padding:.28rem .55rem; border-radius:999px; background:rgba(0,0,0,.4);
+    border:1px solid rgba(255,255,255,.3); color:#fff; z-index:3; white-space:nowrap;
   }
   .pf-play{
     position:absolute; width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,.16);
     border:1.5px solid rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center;
     top:50%; left:50%; transform:translate(-50%,-50%); font-size:1rem; z-index:2; color:#fff;
   }
+  /* full caption: fades in only once a panel is expanded */
   .pf-cap{
-    position:absolute; left:0; right:0; bottom:0; padding:1rem 1.1rem; z-index:2;
-    background:linear-gradient(to top, rgba(0,0,0,.65), transparent);
+    position:absolute; left:0; right:0; bottom:0; padding:1.1rem 1.2rem; z-index:3;
+    background:linear-gradient(to top, rgba(0,0,0,.7), transparent);
+    opacity:0; transform:translateY(6px); transition:opacity .35s ease .1s, transform .35s ease .1s;
+    pointer-events:none;
   }
+  .pf-item.expanded .pf-cap{opacity:1; transform:none;}
   .pf-code{font-family:'IBM Plex Mono',monospace; font-size:.65rem; letter-spacing:.1em; color:#E7A5A8;}
-  .pf-cap h4{margin:.2rem 0 0; font-size:.95rem; font-weight:600; color:#fff;}
+  .pf-cap h4{margin:.2rem 0 0; font-size:1rem; font-weight:600; color:#fff; white-space:nowrap;}
+
+  /* collapsed label: vertical strip of text, visible while the panel is narrow */
+  .pf-cap-collapsed{
+    position:absolute; inset:0; z-index:3; display:flex; align-items:flex-end; justify-content:center;
+    padding-bottom:1.2rem; writing-mode:vertical-rl; transform:rotate(180deg);
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.1em; color:#fff;
+    opacity:1; transition:opacity .25s ease; pointer-events:none; text-shadow:0 1px 4px rgba(0,0,0,.5);
+  }
+  .pf-item.expanded .pf-cap-collapsed{opacity:0;}
+
   .pf-item.pf-hide{display:none;}
   .pf-note{font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:#8B95A0; text-align:center;}
 
@@ -305,9 +325,18 @@
     .pf-nav-next{right:.5rem;}
   }
 
-  @media (max-width:900px){ .pf-grid{grid-template-columns:repeat(2,1fr);} }
-  @media (max-width:520px){ .pf-grid{grid-template-columns:1fr;} }
+  @media (max-width:768px){
+    .pf-accordion{flex-direction:column; height:auto;}
+    .pf-item{flex:none; height:64px; min-width:100%; transition:height .5s ease;}
+    .pf-item.expanded{height:320px;}
+    .pf-cap-collapsed{
+      writing-mode:horizontal-tb; transform:none; flex-direction:row; align-items:center;
+      justify-content:flex-start; padding:0 1.1rem; gap:.6rem; font-size:.78rem;
+    }
+    .pf-item.expanded .pf-thumb i{font-size:1.3rem;}
+  }
 </style>
+
 </head>
 
 <body>
@@ -544,24 +573,27 @@
       <div class="pf-item" data-type="video" data-title="Formation C-TPAT" data-desc="Sensibilisation du personnel aux exigences de sûreté C-TPAT.">
         <div class="pf-thumb ph-9"><div class="pf-play"><i class="fas fa-play"></i></div></div>
         <span class="pf-badge">VIDÉO</span>
+        <div class="pf-cap-collapsed">PF·08 · Formation C-TPAT</div>
         <div class="pf-cap"><span class="pf-code">PF·08 · AUDIT</span><h4>Formation C-TPAT</h4></div>
       </div>
 
       <div class="pf-item" data-type="photo" data-title="Entretiens de recrutement" data-desc="Séance d'entretiens et d'évaluation de candidats pour nos clients.">
         <div class="pf-thumb ph-7"><i class="fas fa-camera"></i></div>
         <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap-collapsed">PF·09 · Recrutement &amp; entretiens</div>
         <div class="pf-cap"><span class="pf-code">PF·09 · RH</span><h4>Recrutement &amp; entretiens</h4></div>
       </div>
 
       <div class="pf-item" data-type="photo" data-title="Évaluation des risques sur site" data-desc="Visite terrain et analyse des risques professionnels en production.">
         <div class="pf-thumb ph-10"><i class="fas fa-camera"></i></div>
         <span class="pf-badge">PHOTO</span>
+        <div class="pf-cap-collapsed">PF·10 · Évaluation des risques</div>
         <div class="pf-cap"><span class="pf-code">PF·10 · RISQUES</span><h4>Évaluation des risques</h4></div>
       </div>
 
     </div>
 
-    <p class="pf-note mt-8">Vignettes de démonstration — à remplacer par vos photos et vidéos officielles.</p>
+    <p class="pf-note mt-8">Cliquez sur un panneau pour l'agrandir, cliquez à nouveau pour l'ouvrir en plein écran.</p>
   </div>
 </section>
 
@@ -750,10 +782,14 @@
       pfFilters.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const f = btn.dataset.filter;
+      let firstVisible = null;
       pfItems.forEach(item => {
         const match = f === 'all' || item.dataset.type === f;
         item.classList.toggle('pf-hide', !match);
+        item.classList.remove('expanded');
+        if (match && !firstVisible) firstVisible = item;
       });
+      if (firstVisible) firstVisible.classList.add('expanded');
     });
   });
 
@@ -795,10 +831,17 @@
     pfCode.textContent = item.querySelector('.pf-code').textContent;
   }
 
+  // Accordion: first click on a collapsed panel expands it (peek).
+  // Clicking a panel that's already expanded opens the full slideshow.
   pfItemsArr.forEach((item, i) => {
     item.addEventListener('click', () => {
-      renderLightbox(i);
-      pfLightbox.classList.add('open');
+      if (item.classList.contains('expanded')) {
+        renderLightbox(i);
+        pfLightbox.classList.add('open');
+      } else {
+        pfItemsArr.forEach(it => it.classList.remove('expanded'));
+        item.classList.add('expanded');
+      }
     });
   });
 
