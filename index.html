@@ -59,7 +59,13 @@
   }
   header.shrink .bar{padding:.6rem 0;}
   .brand-link{display:flex; align-items:center; gap:.75rem;}
-  .logo-mark{width:40px; height:40px; flex-shrink:0;}
+  .logo-chip{
+    background:#F7F5F1; border-radius:6px; padding:.4rem .7rem; display:inline-flex; align-items:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.18); transition:padding .25s ease;
+  }
+  header.shrink .logo-chip{padding:.28rem .55rem;}
+  .logo-full{height:40px; width:auto; display:block; transition:height .25s ease;}
+  header.shrink .logo-full{height:32px;}
   .brand-name{color:#fff; font-family:'Fraunces',serif; font-weight:600; font-size:1.35rem; letter-spacing:.01em; line-height:1.1;}
   .brand-tag{color:#9FB2C9; font-family:'IBM Plex Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase;}
 
@@ -446,15 +452,9 @@
 <header id="header" role="banner">
   <div class="container bar">
     <a href="#accueil" class="brand-link">
-      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 C12 42 4 34 4 23 V10 Z" fill="#0B2545" stroke="#C1272D" stroke-width="1.5"/>
-        <path d="M24 3 L44 10 V23 C44 34 36 42 24 45 Z" fill="#132F52"/>
-        <text x="24" y="29" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" fill="#F7F5F1" font-weight="600">TC</text>
-      </svg>
-      <div>
-        <div class="brand-name">TECOMA</div>
-        <div class="brand-tag" style="font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; font-size:.72rem; line-height:1.3; max-width:210px;">Ressources Humaines, Conformité &amp; Sécurité au Travail</div>
-      </div>
+      <span class="logo-chip">
+        <img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/blob/main/Logo_TECOMA_01-removebg-preview.png?raw=true" alt="TECOMA — Technical Education, Compliance & Management Agency" class="logo-full">
+      </span>
     </a>
 
     <nav class="nav-desktop" aria-label="Navigation principale">
