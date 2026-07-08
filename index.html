@@ -536,18 +536,21 @@
       </div>
 
       <div class="pf-item" data-type="photo" data-title="Formation extincteurs — Norme NFPA 10" data-desc="Exercice de manipulation d'extincteurs conforme aux exigences NFPA 10.">
-        <div class="pf-thumb"><img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/blob/main/Ext.%20training%2001.jpeg?raw=true" alt="Formation aux premiers secours"></div>
+        <div class="pf-thumb"><img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/blob/main/Ext.%20training%2001.jpeg?raw=true" alt="Formation extincteurs"></div>
         <span class="pf-badge">PHOTO</span>
         <div class="pf-cap-collapsed">PF·02 · Formation extincteurs</div>
         <div class="pf-cap"><span class="pf-code">PF·02 · SÉCURITÉ</span><h4>Formation extincteurs</h4></div>
       </div>
 
       <div class="pf-item" data-type="video" data-title="Exercice d'évacuation d'urgence" data-desc="Simulation d'évacuation encadrée par nos équipes, avec débriefing.">
-        <div class="pf-thumb ph-3">
-          <div class="pf-thumb"><img src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/raw/refs/heads/main/Extinguisher%20training03.mp4"></div>
+        <div class="pf-thumb">
+          <video muted loop playsinline preload="metadata">
+            <source src="https://github.com/TECOMA-AGENCY/First-aid-Extinguisher-training/raw/refs/heads/main/Extinguisher%20training03.mp4" type="video/mp4">
+          </video>
+          <div class="pf-play"><i class="fas fa-play"></i></div>
         </div>
         <span class="pf-badge">VIDÉO</span>
-        <div class="pf-cap-collapsed">PF·03 · Extinguisher training </div>
+        <div class="pf-cap-collapsed">PF·03 · Extinguisher training</div>
         <div class="pf-cap"><span class="pf-code">PF·03 · SÉCURITÉ</span><h4>Évacuation d'urgence</h4></div>
       </div>
 
@@ -826,10 +829,12 @@
     const vid = thumb.querySelector('video');
 
     pfMedia.className = 'pf-lightbox-media ' + thumbClass;
-    if (img) {
+    if (vid) {
+      const source = vid.querySelector('source');
+      const src = source ? source.getAttribute('src') : vid.getAttribute('src');
+      pfMedia.innerHTML = '<video src="' + src + '" controls autoplay></video>';
+    } else if (img) {
       pfMedia.innerHTML = '<img src="' + img.getAttribute('src') + '" alt="' + item.dataset.title + '">';
-    } else if (vid) {
-      pfMedia.innerHTML = '<video src="' + vid.querySelector('source').getAttribute('src') + '" controls autoplay></video>';
     } else {
       pfMedia.innerHTML = isVideo
         ? '<div class="pf-play" style="position:static; transform:none;"><i class="fas fa-play"></i></div>'
