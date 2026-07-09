@@ -469,7 +469,40 @@
   .footer-bottom .container{
     text-align:center; color:#7E8FA3; font-size:.8rem;
   }
-  .footer-bottom .font-mono{color:#7E8FA3;}
+  .footer-bottom .font-mono{color:#7E8FA3;}  /* ---------- service detail links + modal ---------- */
+  .svc-link{color:var(--slate); text-decoration:none; border-bottom:1px dashed transparent; transition:color .2s ease, border-color .2s ease;}
+  .svc-link:hover{color:var(--navy); border-color:var(--red);}
+
+  .svc-modal{
+    position:fixed; inset:0; z-index:110; background:rgba(6,16,32,.72);
+    display:none; align-items:center; justify-content:center; padding:2rem;
+  }
+  .svc-modal.open{display:flex;}
+  .svc-modal-inner{
+    max-width:720px; width:100%; max-height:82vh; overflow-y:auto; background:#fff;
+    border-radius:3px; box-shadow:0 30px 80px rgba(0,0,0,.45); position:relative;
+  }
+  .svc-modal-head{
+    position:sticky; top:0; background:var(--navy); color:#fff; padding:1.6rem 2.2rem;
+    border-bottom:3px solid var(--red);
+  }
+  .svc-modal-head .eyebrow{color:#E7A5A8;}
+  .svc-modal-head h3{font-family:'Fraunces',serif; font-size:1.4rem; font-weight:600; margin:.3rem 0 0;}
+  .svc-modal-close{
+    position:absolute; top:1.2rem; right:1.4rem; width:38px; height:38px; border-radius:50%;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3); color:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem;
+  }
+  .svc-modal-close:hover{background:rgba(255,255,255,.22);}
+  .svc-modal-body{padding:1.8rem 2.2rem 2.4rem; color:var(--slate); font-size:.94rem; line-height:1.75;}
+  .svc-modal-body p{margin:0 0 1rem;}
+  .svc-modal-body h4{color:var(--navy); font-family:'Fraunces',serif; font-size:1.02rem; font-weight:600; margin:1.4rem 0 .8rem;}
+  .svc-modal-body ul{margin:0; padding:0; list-style:none;}
+  .svc-modal-body li{
+    display:flex; gap:.6rem; padding:.5rem 0; border-top:1px solid #EFECE4; font-size:.9rem;
+  }
+  .svc-modal-body li:first-child{border-top:none;}
+  .svc-modal-body li i{color:var(--red); font-size:.65rem; margin-top:.45rem;}
 </style>
 
 </head>
@@ -644,10 +677,10 @@
         <div class="svc-icon"><i class="fas fa-people-group"></i></div>
         <h3>Ressources Humaines</h3>
         <ul>
-          <li><i class="fas fa-circle"></i> Recrutement et sélection du personnel</li>
-          <li><i class="fas fa-circle"></i> Placement temporaire et permanent</li>
-          <li><i class="fas fa-circle"></i> Externalisation de la fonction RH</li>
-          <li><i class="fas fa-circle"></i> Évaluation et développement des compétences</li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="recrutement">Recrutement et sélection du personnel</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="placement">Placement temporaire et permanent</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="externalisation">Externalisation de la fonction RH</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="evaluation">Évaluation et développement des compétences</a></li>
         </ul>
       </div>
 
@@ -693,6 +726,18 @@
     </div>
   </div>
 </section>
+
+<!-- SERVICE DETAIL MODAL -->
+<div class="svc-modal" id="svcModal">
+  <div class="svc-modal-inner">
+    <div class="svc-modal-head">
+      <button class="svc-modal-close" id="svcModalClose" aria-label="Fermer"><i class="fas fa-xmark"></i></button>
+      <span class="eyebrow" id="svcModalEyebrow">RH·01 · SÉCURITÉ</span>
+      <h3 id="svcModalTitle">Titre</h3>
+    </div>
+    <div class="svc-modal-body" id="svcModalBody"></div>
+  </div>
+</div>
 
 <!-- PORTFOLIO -->
 <section id="portfolio" class="py-24" style="background:var(--paper); border-top:1px solid var(--line);">
@@ -1019,6 +1064,109 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- Service detail modal (Ressources Humaines) ----------
+  const svcContent = {
+    recrutement: {
+      title: "Recrutement et sélection du personnel",
+      html: `
+        <p>Le recrutement et la sélection du personnel constituent un processus stratégique visant à identifier, attirer, évaluer et embaucher les candidats les plus qualifiés pour répondre aux besoins spécifiques d'une organisation. Ce processus commence par une analyse approfondie du poste à pourvoir, suivie de la diffusion des offres d'emploi, de la présélection des candidatures, des entretiens, des tests techniques ou psychométriques, de la vérification des références et de la recommandation finale.</p>
+        <p>Notre objectif est de fournir aux entreprises des collaborateurs compétents, motivés et en adéquation avec leur culture organisationnelle. Grâce à une méthodologie rigoureuse et des outils d'évaluation modernes, nous réduisons les délais de recrutement tout en améliorant la qualité des embauches.</p>
+        <h4>Nos services comprennent notamment :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Analyse des besoins en recrutement</li>
+          <li><i class="fas fa-circle"></i> Rédaction et diffusion des offres d'emploi</li>
+          <li><i class="fas fa-circle"></i> Recherche et présélection des candidats</li>
+          <li><i class="fas fa-circle"></i> Entretiens de sélection</li>
+          <li><i class="fas fa-circle"></i> Évaluations techniques, comportementales et psychométriques</li>
+          <li><i class="fas fa-circle"></i> Vérification des références professionnelles</li>
+          <li><i class="fas fa-circle"></i> Accompagnement jusqu'à l'intégration du collaborateur</li>
+        </ul>`
+    },
+    placement: {
+      title: "Placement temporaire et permanent",
+      html: `
+        <p>Le service de placement temporaire et permanent permet aux entreprises de répondre efficacement à leurs besoins en main-d'œuvre, qu'ils soient ponctuels ou à long terme.</p>
+        <p>Le placement temporaire consiste à mettre à disposition du personnel qualifié pour des missions limitées dans le temps, notamment pour faire face à un accroissement d'activité, remplacer un employé absent, gérer un projet spécifique ou répondre à une urgence opérationnelle. Le placement permanent vise quant à lui le recrutement de collaborateurs destinés à intégrer durablement les effectifs de l'entreprise.</p>
+        <p>Ce service offre aux employeurs une grande flexibilité tout en réduisant les coûts et les délais liés au recrutement administratif.</p>
+        <h4>Les avantages comprennent :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Disponibilité rapide de personnel qualifié</li>
+          <li><i class="fas fa-circle"></i> Réduction des coûts de recrutement</li>
+          <li><i class="fas fa-circle"></i> Gestion simplifiée des ressources humaines</li>
+          <li><i class="fas fa-circle"></i> Flexibilité selon les besoins de production</li>
+          <li><i class="fas fa-circle"></i> Réduction des risques liés à l'embauche</li>
+          <li><i class="fas fa-circle"></i> Suivi administratif des employés temporaires</li>
+        </ul>`
+    },
+    externalisation: {
+      title: "Externalisation de la fonction RH",
+      html: `
+        <p>L'externalisation de la fonction Ressources Humaines (Outsourcing RH) consiste à confier tout ou partie de la gestion des ressources humaines à un prestataire spécialisé. Cette solution permet aux entreprises de se concentrer sur leur cœur de métier tout en bénéficiant d'une expertise professionnelle et d'une gestion conforme aux exigences légales et aux meilleures pratiques.</p>
+        <p>Selon les besoins de l'entreprise, nous pouvons prendre en charge une ou plusieurs fonctions RH, garantissant efficacité, confidentialité et conformité.</p>
+        <h4>Nos prestations peuvent inclure :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Gestion administrative du personnel</li>
+          <li><i class="fas fa-circle"></i> Gestion des dossiers des employés</li>
+          <li><i class="fas fa-circle"></i> Élaboration et suivi des contrats de travail</li>
+          <li><i class="fas fa-circle"></i> Gestion des absences et des congés</li>
+          <li><i class="fas fa-circle"></i> Gestion disciplinaire</li>
+          <li><i class="fas fa-circle"></i> Accompagnement lors des audits sociaux</li>
+          <li><i class="fas fa-circle"></i> Gestion de la conformité aux lois du travail</li>
+          <li><i class="fas fa-circle"></i> Élaboration des politiques RH</li>
+          <li><i class="fas fa-circle"></i> Conseil en relations de travail</li>
+          <li><i class="fas fa-circle"></i> Accompagnement des représentants des travailleurs et des syndicats</li>
+        </ul>
+        <p>Cette approche permet d'améliorer la performance RH tout en maîtrisant les coûts opérationnels.</p>`
+    },
+    evaluation: {
+      title: "Évaluation et développement des compétences",
+      html: `
+        <p>L'évaluation et le développement des compétences ont pour objectif de mesurer les connaissances, les aptitudes, les comportements professionnels et le potentiel des collaborateurs afin d'identifier leurs forces, leurs axes d'amélioration et leurs besoins en formation.</p>
+        <p>À partir des résultats obtenus, nous élaborons des plans de développement personnalisés qui favorisent la performance individuelle et collective tout en préparant les employés aux évolutions de leur carrière.</p>
+        <p>Notre démarche contribue à renforcer la productivité, améliorer la qualité du travail, développer le leadership et fidéliser les talents.</p>
+        <h4>Nos interventions comprennent :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Évaluation des compétences techniques et comportementales</li>
+          <li><i class="fas fa-circle"></i> Évaluation de la performance individuelle</li>
+          <li><i class="fas fa-circle"></i> Bilans de compétences</li>
+          <li><i class="fas fa-circle"></i> Cartographie des compétences</li>
+          <li><i class="fas fa-circle"></i> Identification des besoins de formation</li>
+          <li><i class="fas fa-circle"></i> Élaboration de plans de développement</li>
+          <li><i class="fas fa-circle"></i> Coaching professionnel</li>
+          <li><i class="fas fa-circle"></i> Développement du leadership</li>
+          <li><i class="fas fa-circle"></i> Accompagnement des gestionnaires</li>
+          <li><i class="fas fa-circle"></i> Suivi des performances et des indicateurs RH</li>
+        </ul>
+        <p>Grâce à cette approche, les entreprises disposent d'une vision claire de leur capital humain et peuvent mettre en place une stratégie efficace de développement des talents, favorisant leur compétitivité et leur croissance durable.</p>`
+    }
+  };
+
+  const svcModal = document.getElementById('svcModal');
+  const svcModalTitle = document.getElementById('svcModalTitle');
+  const svcModalEyebrow = document.getElementById('svcModalEyebrow');
+  const svcModalBody = document.getElementById('svcModalBody');
+  const svcModalClose = document.getElementById('svcModalClose');
+
+  document.querySelectorAll('.svc-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const data = svcContent[link.dataset.svc];
+      if (!data) return;
+      svcModalEyebrow.textContent = 'RH·01 · RESSOURCES HUMAINES';
+      svcModalTitle.textContent = data.title;
+      svcModalBody.innerHTML = data.html;
+      svcModal.classList.add('open');
+      svcModal.querySelector('.svc-modal-inner').scrollTop = 0;
+    });
+  });
+
+  function closeSvcModal(){ svcModal.classList.remove('open'); }
+  svcModalClose.addEventListener('click', closeSvcModal);
+  svcModal.addEventListener('click', (e) => { if (e.target === svcModal) closeSvcModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && svcModal.classList.contains('open')) closeSvcModal();
+  });
 
   // ---------- Portfolio: filters ----------
   const pfFilters = document.querySelectorAll('.pf-filter');
