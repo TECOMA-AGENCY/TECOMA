@@ -208,6 +208,22 @@
     background-size:60px 60px;
   }
   .about-text p{line-height:1.85; font-size:1.02rem; color:#C4D0DD;}
+  .about-tabs{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; border-bottom:1px solid rgba(255,255,255,.14);}
+  .about-tab{
+    font-family:'Fraunces',serif; font-weight:600; font-size:1rem; color:#9FB2C9;
+    background:none; border:none; padding:.8rem 1.3rem; cursor:pointer; position:relative;
+    transition:color .2s ease;
+  }
+  .about-tab::after{
+    content:""; position:absolute; left:1.3rem; right:1.3rem; bottom:-1px; height:2px; background:var(--red);
+    transform:scaleX(0); transition:transform .25s ease; transform-origin:left;
+  }
+  .about-tab:hover{color:#fff;}
+  .about-tab.active{color:#fff;}
+  .about-tab.active::after{transform:scaleX(1);}
+  .about-tab-panel{display:none;}
+  .about-tab-panel.active{display:block; animation:aboutFade .35s ease;}
+  @keyframes aboutFade{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
   .seal{width:190px; height:190px; margin:0 auto; position:relative;}
   .seal svg{width:100%; height:100%;}
   .seal-wrap{transform:rotate(-8deg); transition:transform .8s ease;}
@@ -437,8 +453,9 @@
   .approach-grid{display:grid; grid-template-columns:1fr; gap:4rem;}
   @media (min-width:1024px){ .approach-grid{grid-template-columns:repeat(2,1fr);} }
 
-  .about-grid{display:grid; grid-template-columns:1fr; gap:3.5rem; align-items:center;}
+  .about-grid{display:grid; grid-template-columns:1fr; gap:3.5rem; align-items:start;}
   @media (min-width:1024px){ .about-grid{grid-template-columns:2fr 1fr;} }
+  .seal-wrap{position:sticky; top:8rem;}
 
   .contact-grid{display:grid; grid-template-columns:1fr; gap:3rem;}
   @media (min-width:1024px){ .contact-grid{grid-template-columns:2fr 3fr;} }  /* ---------- footer ---------- */
@@ -906,21 +923,91 @@
     <div class="about-grid-text about-text reveal">
       <span class="eyebrow" style="color:#E7A5A8">À propos de TECOMA</span>
       <h2 class="section-title" style="color:#fff">Un partenaire technique pour une croissance responsable.</h2>
-      <p class="mt-6">
-        TECOMA accompagne les entreprises locales et internationales dans la mise en œuvre et le maintien de
-        systèmes performants de conformité sociale, de santé et sécurité au travail, et de développement des
-        ressources humaines.
-      </p>
-      <p>
-        Nous intervenons selon les standards professionnels et réglementaires internationaux, en tenant compte
-        des réalités opérationnelles de chaque organisation, pour renforcer la performance globale, la gestion
-        des risques et la conformité aux exigences des clients et des autorités.
-      </p>
-      <p>
-        Grâce à une expertise technique éprouvée, nous proposons des solutions adaptées, durables et orientées
-        résultats — au service de la compétitivité et de l'image professionnelle de nos clients sur les marchés
-        nationaux et internationaux.
-      </p>
+
+      <div class="about-tabs" role="tablist">
+        <button class="about-tab active" data-tab="presentation" role="tab" aria-selected="true">Présentation</button>
+        <button class="about-tab" data-tab="mission" role="tab" aria-selected="false">Notre Mission</button>
+        <button class="about-tab" data-tab="vision" role="tab" aria-selected="false">Notre Vision</button>
+      </div>
+
+      <div class="about-tab-panel active" data-panel="presentation">
+        <p class="mt-6">
+          TECOMA (Technical Education, Compliance &amp; Management Agency) est une entreprise spécialisée dans les
+          services de gestion des ressources humaines, conformité sociale, santé, sécurité et environnement (HSE),
+          gestion des risques, formation professionnelle et audit de conformité. Depuis sa création, TECOMA
+          accompagne les entreprises, les organisations et les institutions publiques et privées dans le
+          renforcement de leurs capacités organisationnelles et l'amélioration de leurs performances opérationnelles.
+        </p>
+        <p>
+          Grâce à une équipe de professionnels qualifiés et à une approche fondée sur les meilleures pratiques
+          internationales, nous proposons des solutions adaptées aux besoins spécifiques de chaque client. Nos
+          interventions couvrent notamment le recrutement et le développement des talents, les audits de conformité
+          sociale et environnementale, les évaluations des risques professionnels, la mise en œuvre de systèmes de
+          management, les formations spécialisées ainsi que l'accompagnement vers les certifications et standards
+          internationaux tels que ISO 9001, ISO 14001, ISO 45001, WRAP, C-TPAT et les exigences des principaux
+          donneurs d'ordre internationaux.
+        </p>
+        <p>
+          Notre engagement est de contribuer à la création d'organisations plus performantes, plus sûres, plus
+          responsables et plus compétitives, en offrant des services de qualité reposant sur l'expertise,
+          l'intégrité, l'innovation et l'amélioration continue.
+        </p>
+      </div>
+
+      <div class="about-tab-panel" data-panel="mission">
+        <p class="mt-6">
+          La mission de TECOMA est d'accompagner durablement les entreprises dans l'amélioration de leur performance
+          globale en proposant des solutions professionnelles, innovantes et adaptées en matière de ressources
+          humaines, conformité, sécurité au travail, gestion des risques, formation et management organisationnel.
+        </p>
+        <p>
+          Nous avons pour objectif d'aider nos partenaires à développer des environnements de travail conformes aux
+          exigences légales et aux standards internationaux, favorisant ainsi la protection des travailleurs, la
+          maîtrise des risques, l'amélioration de la qualité, la responsabilité sociale et la performance
+          opérationnelle.
+        </p>
+        <p>
+          À travers nos services de conseil, d'audit, de formation et d'assistance technique, nous contribuons à
+          renforcer les compétences des équipes, à optimiser les processus internes et à promouvoir une culture
+          d'excellence, de prévention et d'amélioration continue. Chaque intervention est conçue pour répondre aux
+          réalités de nos clients, en tenant compte de leur secteur d'activité, de leurs objectifs stratégiques et
+          des exigences de leurs marchés.
+        </p>
+        <p>
+          Notre mission est également de devenir un véritable partenaire de confiance, capable d'accompagner les
+          organisations dans leur croissance durable, leur conformité réglementaire et leur compétitivité sur les
+          marchés nationaux et internationaux.
+        </p>
+      </div>
+
+      <div class="about-tab-panel" data-panel="vision">
+        <p class="mt-6">
+          La vision de TECOMA est de devenir la référence en Haïti et dans la région des Caraïbes en matière de
+          conseil stratégique, gestion des ressources humaines, conformité sociale, santé et sécurité au travail,
+          formation professionnelle et gestion des risques, tout en développant progressivement une présence
+          reconnue sur les marchés internationaux.
+        </p>
+        <p>
+          Nous aspirons à bâtir une organisation innovante, reconnue pour son professionnalisme, son excellence
+          technique et sa capacité à offrir des solutions à forte valeur ajoutée répondant aux plus hauts standards
+          internationaux. Notre ambition est d'accompagner les entreprises dans leur transformation organisationnelle
+          afin qu'elles deviennent plus performantes, plus résilientes et plus compétitives.
+        </p>
+        <p>
+          À long terme, TECOMA souhaite contribuer activement au développement économique et social des
+          organisations qu'elle accompagne en favorisant une culture fondée sur la conformité, l'éthique, la
+          sécurité, la qualité, le respect de l'environnement et le développement du capital humain. Nous voulons
+          être un partenaire stratégique incontournable, capable d'anticiper les défis de demain et de proposer des
+          solutions durables qui créent de la valeur pour nos clients, leurs collaborateurs et leurs parties
+          prenantes.
+        </p>
+        <p>
+          En plaçant l'innovation, l'excellence opérationnelle et la satisfaction de nos clients au cœur de nos
+          actions, TECOMA ambitionne de devenir un acteur majeur du conseil et de la formation, reconnu pour son
+          impact positif sur la performance des entreprises et sur le développement durable des communautés dans
+          lesquelles elle intervient.
+        </p>
+      </div>
     </div>
 
     <div class="reveal seal-wrap">
@@ -1065,6 +1152,19 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ---------- About: tabs ----------
+  const aboutTabs = document.querySelectorAll('.about-tab');
+  const aboutPanels = document.querySelectorAll('.about-tab-panel');
+  aboutTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      aboutTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const target = tab.dataset.tab;
+      aboutPanels.forEach(p => p.classList.toggle('active', p.dataset.panel === target));
+    });
+  });
 
   // ---------- Service detail modal (Ressources Humaines) ----------
   const svcContent = {
