@@ -471,6 +471,8 @@
   }
   .footer-bottom .font-mono{color:#7E8FA3;}  /* ---------- service detail links + modal ---------- */
   .svc-link{color:var(--slate); text-decoration:none; border-bottom:1px dashed transparent; transition:color .2s ease, border-color .2s ease;}
+  .svc-title-link{color:var(--navy); border-bottom-color:transparent;}
+  .svc-title-link:hover{color:var(--red); border-bottom-color:var(--red);}
   .svc-link:hover{color:var(--navy); border-color:var(--red);}
 
   .svc-modal{
@@ -700,14 +702,14 @@
       <div class="svc-card reveal" style="transition-delay:.12s">
         <span class="svc-code">ST·03</span>
         <div class="svc-icon"><i class="fas fa-fire-extinguisher"></i></div>
-        <h3>Sécurité au Travail &amp; Formations</h3>
+        <h3><a href="#" class="svc-link svc-title-link" data-svc="st-intro">Sécurité au Travail &amp; Formations</a></h3>
         <ul>
-          <li><i class="fas fa-circle"></i> Formation aux premiers secours</li>
-          <li><i class="fas fa-circle"></i> Formation à l'utilisation des extincteurs, conforme à la norme NFPA 10</li>
-          <li><i class="fas fa-circle"></i> Formation à la manipulation des produits chimiques, incluant la gestion des déversements et les procédures FDS/MSDS</li>
-          <li><i class="fas fa-circle"></i> Exercices d'évacuation d'urgence</li>
-          <li><i class="fas fa-circle"></i> Fourniture d'équipements de sécurité industrielle</li>
-          <li><i class="fas fa-circle"></i> Inspection et recharge d'extincteurs, conformes à la norme NFPA 10</li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="premiers-secours">Formation aux premiers secours</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="extincteurs-formation">Formation à l'utilisation des extincteurs, conforme à la norme NFPA 10</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="chimiques">Formation à la manipulation des produits chimiques, incluant la gestion des déversements et les procédures FDS/MSDS</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="evacuation">Exercices d'évacuation d'urgence</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="equipements">Fourniture d'équipements de sécurité industrielle</a></li>
+          <li><i class="fas fa-circle"></i> <a href="#" class="svc-link" data-svc="extincteurs-inspection">Inspection et recharge d'extincteurs, conformes à la norme NFPA 10</a></li>
         </ul>
       </div>
 
@@ -1262,6 +1264,145 @@
           <li><i class="fas fa-circle"></i> La communication avec les donneurs d'ordre afin de maintenir une relation professionnelle transparente et de renforcer la confiance</li>
         </ul>
         <p>Grâce à cette représentation locale, l'entreprise bénéficie d'un accompagnement stratégique qui facilite les audits, améliore sa réactivité face aux exigences des clients et des organismes de certification, et contribue à préserver sa réputation ainsi que ses opportunités commerciales sur les marchés nationaux et internationaux.</p>`
+    },
+    'st-intro': {
+      title: "Sécurité au Travail & Formations",
+      html: `
+        <p>La sécurité au travail regroupe l'ensemble des mesures, procédures, formations et équipements destinés à protéger les travailleurs contre les accidents, les maladies professionnelles et les situations d'urgence.</p>
+        <p>Elle vise à créer un environnement de travail sûr, conforme aux exigences légales ainsi qu'aux normes internationales en matière de santé et sécurité au travail (SST), tout en développant une véritable culture de prévention au sein de l'entreprise.</p>`
+    },
+    'premiers-secours': {
+      title: "Formation aux premiers secours",
+      html: `
+        <p>La formation aux premiers secours permet aux employés d'acquérir les compétences nécessaires pour intervenir rapidement et efficacement lorsqu'un accident ou une urgence médicale survient sur le lieu de travail, avant l'arrivée des services médicaux.</p>
+        <h4>Cette formation comprend notamment :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> L'évaluation rapide de l'état de la victime</li>
+          <li><i class="fas fa-circle"></i> Les techniques de réanimation cardio-pulmonaire (RCP)</li>
+          <li><i class="fas fa-circle"></i> L'utilisation d'un défibrillateur automatisé externe (DAE) lorsque disponible</li>
+          <li><i class="fas fa-circle"></i> Le traitement des hémorragies, brûlures, fractures et traumatismes</li>
+          <li><i class="fas fa-circle"></i> La prise en charge des victimes inconscientes</li>
+          <li><i class="fas fa-circle"></i> Les gestes appropriés en cas d'étouffement</li>
+          <li><i class="fas fa-circle"></i> Les procédures d'alerte des services d'urgence</li>
+          <li><i class="fas fa-circle"></i> La sécurisation de la zone d'accident</li>
+          <li><i class="fas fa-circle"></i> Les exercices pratiques sur des situations réelles ou simulées</li>
+        </ul>
+        <p>Cette formation contribue à réduire la gravité des blessures, sauver des vies et renforcer la capacité d'intervention interne de l'entreprise.</p>`
+    },
+    'extincteurs-formation': {
+      title: "Formation à l'utilisation des extincteurs — NFPA 10",
+      html: `
+        <p>Cette formation prépare les travailleurs à identifier un départ de feu et à utiliser correctement un extincteur portatif conformément aux exigences de la norme NFPA 10 (Standard for Portable Fire Extinguishers).</p>
+        <h4>Le programme couvre notamment :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Les principes fondamentaux du feu (triangle et tétraèdre du feu)</li>
+          <li><i class="fas fa-circle"></i> Les différentes classes d'incendie (A, B, C, D et K/F)</li>
+          <li><i class="fas fa-circle"></i> Les types d'extincteurs et leurs applications</li>
+          <li><i class="fas fa-circle"></i> Les critères de sélection de l'extincteur approprié</li>
+          <li><i class="fas fa-circle"></i> La méthode d'utilisation PASS (Pull, Aim, Squeeze, Sweep)</li>
+          <li><i class="fas fa-circle"></i> Les inspections visuelles des extincteurs</li>
+          <li><i class="fas fa-circle"></i> Les précautions de sécurité avant toute intervention</li>
+          <li><i class="fas fa-circle"></i> Les limites d'utilisation des extincteurs</li>
+          <li><i class="fas fa-circle"></i> Les procédures d'évacuation lorsque le feu dépasse les capacités d'intervention</li>
+          <li><i class="fas fa-circle"></i> Les exercices pratiques sur feux contrôlés</li>
+        </ul>
+        <p>Cette formation permet de limiter les dommages matériels, protéger les personnes et améliorer la réactivité face aux incendies.</p>`
+    },
+    chimiques: {
+      title: "Formation à la manipulation des produits chimiques",
+      html: `
+        <p>Cette formation vise à prévenir les accidents liés aux substances chimiques utilisées dans l'entreprise en enseignant les bonnes pratiques de manipulation, de stockage, de transport et d'intervention en cas d'incident.</p>
+        <h4>Elle comprend notamment :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> L'identification des dangers chimiques</li>
+          <li><i class="fas fa-circle"></i> La lecture et l'interprétation des Fiches de Données de Sécurité (FDS/MSDS)</li>
+          <li><i class="fas fa-circle"></i> La compréhension des pictogrammes du Système Général Harmonisé (SGH/GHS)</li>
+          <li><i class="fas fa-circle"></i> Les méthodes de stockage sécuritaire des produits chimiques</li>
+          <li><i class="fas fa-circle"></i> Le choix et l'utilisation appropriée des équipements de protection individuelle (EPI)</li>
+          <li><i class="fas fa-circle"></i> Les incompatibilités chimiques</li>
+          <li><i class="fas fa-circle"></i> Les procédures de transfert et de manipulation sécurisées</li>
+          <li><i class="fas fa-circle"></i> Les mesures de prévention des expositions</li>
+          <li><i class="fas fa-circle"></i> La gestion des déversements accidentels</li>
+          <li><i class="fas fa-circle"></i> L'utilisation des kits anti-déversement</li>
+          <li><i class="fas fa-circle"></i> Les procédures de confinement, de récupération et d'élimination des produits dangereux</li>
+          <li><i class="fas fa-circle"></i> Les procédures d'urgence en cas de contact, d'inhalation ou d'ingestion</li>
+        </ul>
+        <p>Cette formation permet de réduire les risques d'intoxication, de pollution environnementale, d'incendie et d'accidents industriels.</p>`
+    },
+    evacuation: {
+      title: "Exercices d'évacuation d'urgence",
+      html: `
+        <p>Les exercices d'évacuation permettent de tester et d'améliorer la capacité de l'entreprise à réagir efficacement face à une situation d'urgence telle qu'un incendie, un séisme, une fuite chimique ou toute autre menace.</p>
+        <h4>Ces exercices comprennent :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> La planification des scénarios d'urgence</li>
+          <li><i class="fas fa-circle"></i> La sensibilisation du personnel aux procédures d'évacuation</li>
+          <li><i class="fas fa-circle"></i> L'activation des alarmes</li>
+          <li><i class="fas fa-circle"></i> L'évacuation organisée des bâtiments</li>
+          <li><i class="fas fa-circle"></i> La vérification des itinéraires d'évacuation</li>
+          <li><i class="fas fa-circle"></i> Le fonctionnement des points de rassemblement</li>
+          <li><i class="fas fa-circle"></i> Le rôle des brigades d'urgence</li>
+          <li><i class="fas fa-circle"></i> Le contrôle des effectifs après évacuation</li>
+          <li><i class="fas fa-circle"></i> L'évaluation du temps d'évacuation</li>
+          <li><i class="fas fa-circle"></i> L'identification des points d'amélioration</li>
+          <li><i class="fas fa-circle"></i> La rédaction de rapports d'exercice</li>
+          <li><i class="fas fa-circle"></i> La mise à jour des plans d'urgence</li>
+        </ul>
+        <p>Ces simulations renforcent la préparation des employés, limitent les risques de panique et améliorent la coordination lors d'une urgence réelle.</p>`
+    },
+    equipements: {
+      title: "Fourniture d'équipements de sécurité industrielle",
+      html: `
+        <p>Ce service consiste à fournir des équipements conformes aux normes nationales et internationales afin d'assurer la protection des travailleurs contre les différents risques professionnels.</p>
+        <h4>Les équipements peuvent inclure notamment :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Casques de sécurité</li>
+          <li><i class="fas fa-circle"></i> Lunettes de protection</li>
+          <li><i class="fas fa-circle"></i> Gants spécialisés</li>
+          <li><i class="fas fa-circle"></i> Chaussures de sécurité</li>
+          <li><i class="fas fa-circle"></i> Harnais antichute</li>
+          <li><i class="fas fa-circle"></i> Protection auditive</li>
+          <li><i class="fas fa-circle"></i> Protection respiratoire</li>
+          <li><i class="fas fa-circle"></i> Vêtements ignifuges</li>
+          <li><i class="fas fa-circle"></i> Gilets haute visibilité</li>
+          <li><i class="fas fa-circle"></i> Trousses de premiers secours</li>
+          <li><i class="fas fa-circle"></i> Douches et lave-yeux d'urgence</li>
+          <li><i class="fas fa-circle"></i> Signalisation de sécurité</li>
+          <li><i class="fas fa-circle"></i> Armoires de stockage pour produits dangereux</li>
+          <li><i class="fas fa-circle"></i> Kits de confinement des déversements</li>
+          <li><i class="fas fa-circle"></i> Équipements de lutte contre l'incendie</li>
+        </ul>
+        <h4>L'accompagnement comprend également :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> L'analyse des besoins selon les risques de l'entreprise</li>
+          <li><i class="fas fa-circle"></i> Le conseil dans le choix des équipements</li>
+          <li><i class="fas fa-circle"></i> La conformité aux normes internationales</li>
+          <li><i class="fas fa-circle"></i> Le suivi des inspections périodiques</li>
+          <li><i class="fas fa-circle"></i> Les recommandations de remplacement des équipements usés</li>
+        </ul>
+        <p>Cette prestation garantit une meilleure protection des travailleurs tout en favorisant la conformité réglementaire.</p>`
+    },
+    'extincteurs-inspection': {
+      title: "Inspection et recharge d'extincteurs — NFPA 10",
+      html: `
+        <p>Ce service consiste à assurer le contrôle, la maintenance préventive, les essais et la recharge des extincteurs portatifs conformément aux exigences de la norme NFPA 10, garantissant ainsi leur bon fonctionnement en cas d'incendie.</p>
+        <h4>Les prestations comprennent :</h4>
+        <ul>
+          <li><i class="fas fa-circle"></i> Les inspections visuelles périodiques</li>
+          <li><i class="fas fa-circle"></i> La vérification de l'accessibilité et de la signalisation</li>
+          <li><i class="fas fa-circle"></i> Le contrôle de la pression interne</li>
+          <li><i class="fas fa-circle"></i> La vérification des scellés et des goupilles de sécurité</li>
+          <li><i class="fas fa-circle"></i> L'inspection des flexibles, buses et poignées</li>
+          <li><i class="fas fa-circle"></i> Le contrôle de l'état du cylindre</li>
+          <li><i class="fas fa-circle"></i> La maintenance annuelle</li>
+          <li><i class="fas fa-circle"></i> Les essais hydrostatiques lorsque requis</li>
+          <li><i class="fas fa-circle"></i> La recharge après utilisation ou expiration</li>
+          <li><i class="fas fa-circle"></i> Le remplacement des pièces défectueuses</li>
+          <li><i class="fas fa-circle"></i> L'étiquetage et la documentation des interventions</li>
+          <li><i class="fas fa-circle"></i> La tenue des registres de maintenance</li>
+          <li><i class="fas fa-circle"></i> Les recommandations concernant le remplacement des extincteurs non conformes</li>
+        </ul>
+        <p>Ce service permet d'assurer que chaque extincteur est pleinement opérationnel, conforme aux exigences de la NFPA 10 et prêt à protéger les personnes, les installations et les biens en cas d'incendie.</p>`
     }
   };
 
