@@ -407,7 +407,12 @@
 
   /* ---------- feature icon strip ---------- */
   .feature-strip{background:var(--navy); border-top:1px solid rgba(255,255,255,.08);}
-  .feature-item{display:flex; align-items:flex-start; gap:.9rem;}
+  .feature-item{
+    display:flex; align-items:flex-start; gap:.9rem; text-decoration:none;
+    padding:.6rem; margin:-.6rem; border-radius:6px; transition:background .2s ease;
+  }
+  .feature-item:hover{background:rgba(255,255,255,.05);}
+  .feature-item:hover .feature-icon{background:var(--red); color:#fff; border-color:var(--red);}
   .feature-icon{
     flex-shrink:0; width:52px; height:52px; border-radius:50%; border:1.5px solid var(--red);
     display:flex; align-items:center; justify-content:center; color:var(--red); font-size:1.1rem;
@@ -439,9 +444,9 @@
     .hero-grid-photo{display:block;}
   }
 
-  .feature-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2rem;}
-  @media (min-width:640px){ .feature-grid{grid-template-columns:repeat(3,1fr);} }
-  @media (min-width:1180px){ .feature-grid{grid-template-columns:repeat(6,1fr);} }
+  .feature-grid{display:grid; grid-template-columns:repeat(1,1fr); gap:2rem;}
+  @media (min-width:640px){ .feature-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (min-width:1024px){ .feature-grid{grid-template-columns:repeat(4,1fr);} }
 
   .stats-grid{display:grid; grid-template-columns:1fr; gap:2rem; align-items:center;}
   @media (min-width:640px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
@@ -595,48 +600,34 @@
 <!-- FEATURE STRIP -->
 <div class="feature-strip py-12">
   <div class="container feature-grid">
-    <div class="feature-item">
+    <a href="#svc-rh" class="feature-item">
       <div class="feature-icon"><i class="fas fa-people-group"></i></div>
       <div>
         <h4>Ressources Humaines</h4>
         <p>Recrutement, placement temporaire et gestion RH.</p>
       </div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
-      <div>
-        <h4>Conformité Sociale</h4>
-        <p>Audits sociaux, WRAP, C-TPAT et standards internationaux.</p>
-      </div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-hard-hat"></i></div>
-      <div>
-        <h4>Sécurité au Travail</h4>
-        <p>Évaluations des risques, équipements, EPI et prévention.</p>
-      </div>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
-      <div>
-        <h4>Formations</h4>
-        <p>Formations professionnelles sur mesure pour vos équipes.</p>
-      </div>
-    </div>
-    <div class="feature-item">
+    </a>
+    <a href="#svc-ac" class="feature-item">
       <div class="feature-icon"><i class="fas fa-clipboard-check"></i></div>
       <div>
-        <h4>Audits &amp; Qualité</h4>
-        <p>Audits internes, assurance qualité et amélioration continue.</p>
+        <h4>Audit &amp; Conformité</h4>
+        <p>Audit WRAP, C-TPAT, ISO 9001 · 45001 · 14001 et assurance qualité export.</p>
       </div>
-    </div>
-    <div class="feature-item">
+    </a>
+    <a href="#svc-st" class="feature-item">
       <div class="feature-icon"><i class="fas fa-fire-extinguisher"></i></div>
       <div>
-        <h4>Équipements &amp; Sécurité</h4>
-        <p>Recharge d'extincteurs et vente d'équipements de sécurité.</p>
+        <h4>Sécurité au Travail &amp; Formations</h4>
+        <p>Premiers secours, extincteurs, produits chimiques et équipements de sécurité.</p>
       </div>
-    </div>
+    </a>
+    <a href="#svc-er" class="feature-item">
+      <div class="feature-icon"><i class="fas fa-hard-hat"></i></div>
+      <div>
+        <h4>Évaluation des Risques</h4>
+        <p>Analyse des risques, HSE, plans de prévention et amélioration continue.</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -691,7 +682,7 @@
 
     <div class="svc-grid mt-14">
 
-      <div class="svc-card reveal">
+      <div class="svc-card reveal" id="svc-rh">
         <span class="svc-code">RH·01</span>
         <div class="svc-icon"><i class="fas fa-people-group"></i></div>
         <h3>Ressources Humaines</h3>
@@ -703,7 +694,7 @@
         </ul>
       </div>
 
-      <div class="svc-card reveal" style="transition-delay:.06s">
+      <div class="svc-card reveal" id="svc-ac" style="transition-delay:.06s">
         <span class="svc-code">AC·02</span>
         <div class="svc-icon"><i class="fas fa-clipboard-check"></i></div>
         <h3>Audit &amp; Conformité</h3>
@@ -716,7 +707,7 @@
         </ul>
       </div>
 
-      <div class="svc-card reveal" style="transition-delay:.12s">
+      <div class="svc-card reveal" id="svc-st" style="transition-delay:.12s">
         <span class="svc-code">ST·03</span>
         <div class="svc-icon"><i class="fas fa-fire-extinguisher"></i></div>
         <h3><a href="#" class="svc-link svc-title-link" data-svc="st-intro">Sécurité au Travail &amp; Formations</a></h3>
@@ -730,7 +721,7 @@
         </ul>
       </div>
 
-      <div class="svc-card reveal" style="transition-delay:.18s">
+      <div class="svc-card reveal" id="svc-er" style="transition-delay:.18s">
         <span class="svc-code">ER·04</span>
         <div class="svc-icon"><i class="fas fa-hard-hat"></i></div>
         <h3><a href="#" class="svc-link svc-title-link" data-svc="er-intro">Évaluation des Risques</a></h3>
